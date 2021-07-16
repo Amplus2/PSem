@@ -12,8 +12,9 @@ formats = {
 cp('Makefile.in', 'Makefile')
 with open('Makefile', 'a') as f:
     for e,c in formats.items():
-        f.write(f'\n%.ico: %.{e}\n')
-        f.write('\t@mkdir -p tmp\n')
         for r in resolutions:
+            f.write(f'\ntmp/%-{r}.png: %.{e}\n')
+            f.write('\t@mkdir -p tmp\n')
             f.write('\t' + c(r) + '\n')
+        f.write(f'\n%.ico:' + ''.join([f' tmp/%-{r}.png' for r in resolutions]) + '\n')
         f.write('\tconvert tmp/$*-*.png $@\n')
