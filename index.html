@@ -44,24 +44,29 @@
     <img src="kurs_logo.ico" style="height: 85px; width: 85px; top: 15px; right: 15px; position: absolute;">
     <img src="qr.png" style="height: 85px; width: 85px; top: 15px; right: 115px; position: absolute;">
 
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous" onload="
+        const t = document.getElementsByClassName('tex');
+        for(var i = 0; i < t.length; i++) {
+            katex.render(t.item(i).innerHTML, t.item(i));
+        }">
+    </script>
 
     <div class="actual-body">
         <h2>Collatz-Problem</h2>
         <h3>1. Ablauf</h3>
         <p>Beginne mit einer Zahl <span class="tex">n \in \mathbb N \setminus \{0\}</span>:</p>
         <ul>
-            <li>Wenn <span class="tex">n</span> gerade <span class="tex">→ n</span> nimmt <span class="tex">rac{n}{2}</span> an.</li>
-            <li>Wenn <span class="tex">n</span> ungerade <span class="tex">→ n</span> nimmt <span class="tex">3n + 1</span> an.</li>
+            <li>Wenn <span class="tex">n</span> gerade <span class="tex">\rightarrow n</span> nimmt <span class="tex">\frac{n}{2}</span> an.</li>
+            <li>Wenn <span class="tex">n</span> ungerade <span class="tex">\rightarrow n</span> nimmt <span class="tex">3n + 1</span> an.</li>
             <li>Vorgang wiederholen</li>
         </ul>
 
         <h3>2. Beispiele</h3>
-        <p><span class="tex">8 → 4 → 2 → 1 → 4 → ...</span></p>
-        <p><span class="tex">5 → 16 → 8 → 4 → 2 → 1 → 4 → ...</span></p>
+        <p><span class="tex">8 \rightarrow 4 \rightarrow 2 \rightarrow 1 \rightarrow 4 \rightarrow ...</span></p>
+        <p><span class="tex">5 \rightarrow 16 \rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1 \rightarrow 4 \rightarrow ...</span></p>
 
         <h3>3. Folgerung</h3>
-        <p>Jede mögliche Zahlenfolge einer Startzahl <span class="tex">n \in \mathbb N \setminus \{0\}</span> endet im Folgeschema <span class="tex">4 → 2 → 1 → ...</span></p>
+        <p>Jede mögliche Zahlenfolge einer Startzahl <span class="tex">n \in \mathbb N \setminus \{0\}</span> endet im Folgeschema <span class="tex">4 \rightarrow 2 \rightarrow 1 \rightarrow ...</span></p>
 
         <h3>4. Problem</h3>
         <p>Die Folgerung aus 3. ist nicht bewiesen.</p>
@@ -71,12 +76,5 @@
     </div>
 
     <div style="height: 50px;"></div>
-
-    <script>
-        const texs = document.getElementsByClassName("tex");
-        for(var i = 0; i < texs.length; i++) {
-            katex.render(texs.item(i).innerHTML, texs.item(i));
-        }
-    </script>
 </body>
 </html>
