@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "<!DOCTYPE html>
+/bin/echo "<!DOCTYPE html>
 <html lang=\"de\">
 <head>
     <meta charset=\"UTF-8\">
