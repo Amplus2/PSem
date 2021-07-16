@@ -29,7 +29,7 @@ void collatz(Gviz g, Map<String, List<String>> m, int i) {
 void main() {
   final g = Gviz();
   final m = <String, List<String>>{};
-  for (var i = 0; i < 3000; i++) {
+  for (var i = 0; i < 6000; i++) {
     collatz(g, m, i);
   }
   g.write(stdout);
