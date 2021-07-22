@@ -105,15 +105,17 @@ button:active {
   appearance: none;
   width: 100%;
   height: 15px;
-  background: white;
+  background-color: transparent;
   outline: none;
-  border-radius: 5px;
+  border-radius: 15px;
   opacity: 0.9;
-  transition: opacity 200ms;
+  border: 2px solid #00ffa1;
+  transition-duration: 200ms;
 }
 
 .slider:hover {
   opacity: 1;
+  background-color: rgb(42, 42, 42);
 }
 
 .slider::-webkit-slider-thumb {
@@ -121,8 +123,9 @@ button:active {
   width: 27px;
   height: 27px;
   border-radius: 50%;
-  background: #0e93ff;
+  background: #00ffa1;
   cursor: pointer;
+  border: 2px solid #00ffa1;
 }
 
 .slider::-moz-range-thumb {
@@ -130,7 +133,8 @@ button:active {
   width: 27px;
   height: 27px;
   border-radius: 50%;
-  background: #0e93ff;
+  background: #00ffa1;
+  border: 2px solid #00ffa1;
   cursor: pointer;
 }
 
