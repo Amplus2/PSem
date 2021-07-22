@@ -111,6 +111,7 @@ button:active {
   opacity: 0.9;
   border: 2px solid #00ffa1;
   transition-duration: 200ms;
+  cursor: pointer;
 }
 
 .slider:hover {
