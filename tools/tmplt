@@ -42,8 +42,8 @@
     </div>
   </header>
 
-  <img src=\"$1kurs_logo.ico\" style=\"height: 85px; width: 85px; top: 15px; right: 15px; position: absolute;\">
-  <img src=\"$1qr.png\" style=\"height: 85px; width: 85px; top: 15px; right: 115px; position: absolute;\">
+  <img src=\"$1kurs_logo.ico\" class=\"psem_logo\">
+  <img src=\"$1qr.png\" class=\"qr_code\">
 
 $(cat)
 </body>

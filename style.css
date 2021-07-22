@@ -163,3 +163,41 @@ button:active {
   color: #00ffa1;
   transform: scale(1.2);
 }
+
+.psem_logo {
+  height: 85px;
+  width: 85px;
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+
+@media all and (min-width: 801px) {
+  .qr_code {
+    height: 85px;
+    width: 85px;
+    top: 15px;
+    right: 115px;
+    position: absolute;
+  }
+}
+
+@media all and (min-width: 541px) and (max-width: 800px) {
+  .qr_code {
+    height: 85px;
+    width: 85px;
+    top: 15px;
+    left: 15px;
+    position: absolute;
+  }
+}
+
+@media all and (max-width: 540px) {
+  .psem_logo {
+    top: 4px !important;
+    right: 4px !important;
+  }
+  .qr_code {
+    display: none;
+  }
+}
