@@ -43,6 +43,7 @@ For a full rebuild of collatz-collection you will need the following software:
 * [`clang++`](https://clang.llvm.org)
 * [`lld`](https://lld.llvm.org) (for `wasm-ld`)
 * Optionally [`wasmer`](https://wasmer.io) for testing
+* Optionally [`node.js`](https://nodejs.org) and [`npm`](https://npmjs.com) for distributing
 
 and the following fonts:
 
