@@ -37,6 +37,7 @@ button {
   background-color: transparent;
   text-decoration: none;
   transition-duration: 150ms;
+  cursor: pointer;
 }
 
 button:hover {
