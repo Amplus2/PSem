@@ -56,17 +56,17 @@ tmp/graph.dot: tools/graph.dart tools/pubspec.lock
 graph/graph.svg: tmp/graph.dot
 	dot -Tsvg -o graph/graph.svg tmp/graph.dot
 
-index.html: tools/tmplt raw/index.html
-	tools/tmplt "" collatz-collection < raw/index.html > index.html
+index.html: tools/tmplt raw/index.htm
+	tools/tmplt "" collatz-collection < raw/index.htm > index.html
 
-stats/index.html: tools/tmplt raw/stats.html
-	tools/tmplt ../ "Statistiken zur Collatz-Folge" < raw/stats.html > stats/index.html
+stats/index.html: tools/tmplt raw/stats.htm
+	tools/tmplt ../ "Statistiken zur Collatz-Folge" < raw/stats.htm > stats/index.html
 
-seq/index.html: tools/tmplt raw/seq.html
-	tools/tmplt ../ Collatz-Folge < raw/seq.html > seq/index.html
+seq/index.html: tools/tmplt raw/seq.htm
+	tools/tmplt ../ Collatz-Folge < raw/seq.htm > seq/index.html
 
-graph/index.html: tools/tmplt raw/graph.html
-	tools/tmplt ../ Collatz-Graph < raw/graph.html > graph/index.html
+graph/index.html: tools/tmplt raw/graph.htm
+	tools/tmplt ../ Collatz-Graph < raw/graph.htm > graph/index.html
 
 package-lock.json: package.json
 	npm install
