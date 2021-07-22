@@ -1,8 +1,0 @@
-{
-    "deno.enable": true,
-    "deno.lint": true,
-    "deno.unstable": true,
-    "deno.suggest.imports.hosts": {
-        "https://dev.jspm.io": false
-    }
-}
