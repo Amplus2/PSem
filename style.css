@@ -125,7 +125,6 @@ button:active {
   border-radius: 50%;
   background: #00ffa1;
   cursor: pointer;
-  border: 2px solid #00ffa1;
 }
 
 .slider::-moz-range-thumb {
@@ -134,7 +133,6 @@ button:active {
   height: 27px;
   border-radius: 50%;
   background: #00ffa1;
-  border: 2px solid #00ffa1;
   cursor: pointer;
 }
 
@@ -182,7 +180,7 @@ button:active {
   }
 }
 
-@media all and (min-width: 541px) and (max-width: 800px) {
+@media all and (min-width: 581px) and (max-width: 800px) {
   .qr_code {
     height: 85px;
     width: 85px;
@@ -192,12 +190,18 @@ button:active {
   }
 }
 
-@media all and (max-width: 540px) {
+@media all and (max-width: 580px) {
   .psem_logo {
-    top: 4px !important;
-    right: 4px !important;
+    top: 7px !important;
+    right: 7px !important;
   }
   .qr_code {
+    display: none;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .psem_logo {
     display: none;
   }
 }
