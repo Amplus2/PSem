@@ -1,138 +1,207 @@
 /* KASKADIERENDE STIELBLÄDDER */
-@import url('https://fonts.googleapis.com/css?family=Inter:400');
+@import url("https://fonts.googleapis.com/css?family=Inter:400");
 
 ::selection {
-	color: black;
-	background: white;
+  color: black;
+  background: white;
 }
 
 input {
-    background-color: #161616;
-    outline: #e8e8e8;
-    border-radius: 5px;
-    color: #e8e8e8;
-    font-size: 22pt;
-    padding: 5pt;
+  background-color: #161616;
+  outline: #e8e8e8;
+  border-radius: 5px;
+  color: #e8e8e8;
+  font-size: 22pt;
+  padding: 5pt;
 }
 
 html {
-    font-family: 'Inter', sans-serif;
-    color: #e8e8e8;
-    height: 100%;
+  font-family: "Inter", sans-serif;
+  color: #e8e8e8;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    height: 100%;
-    background-color: black;
+  margin: 0;
+  height: 100%;
+  background-color: black;
+}
+
+button {
+  height: 50px;
+  font-size: 17pt;
+  border-radius: 6px;
+  color: #00ffa1;
+  border: 2px solid #00ffa1;
+  background-color: transparent;
+  text-decoration: none;
+  transition-duration: 150ms;
+}
+
+button:hover {
+  color: black;
+  background-color: #00ffa1;
+  transition-duration: 75ms;
+}
+
+button:active {
+  color: white;
+  background-color: black;
 }
 
 .header {
-    background-color: #161616;
+  background-color: #161616;
 }
 
 .header .hoverable {
-    transition-duration: 250ms;
+  transition-duration: 250ms;
 }
 
 .header .hoverable:hover {
-    font-size: 25pt;
+  font-size: 25pt;
 }
 
 .sub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sub-header .logo {
-    padding-top: 5px;
-    padding-right: 10px;
-    width: 40px;
-    height: 40px;
-    transition-duration: 250ms;
+  padding-top: 5px;
+  padding-right: 10px;
+  width: 40px;
+  height: 40px;
+  transition-duration: 250ms;
 }
 
 .sub-header:hover .logo {
-    width: 50px;
-    height: 50px;
-    filter: invert(100%);
+  width: 50px;
+  height: 50px;
+  filter: invert(100%);
 }
 
 .sub-header h1 {
-    color: #e8e8e8;
-    font-size: 24pt;
-    transition-duration: 250ms;
+  color: #e8e8e8;
+  font-size: 24pt;
+  transition-duration: 250ms;
 }
 
 .sub-header:hover h1 {
-    color: #00ffa1;
-    font-size: 27pt;
+  color: #00ffa1;
+  font-size: 27pt;
 }
 
 .actual-body {
-    margin: 50px;
+  margin: 50px;
 }
 
 .center-children {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .slider {
-    appearance: none;
-    width: 100%;
-    height: 15px;
-    background: white;
-    outline: none;
-    border-radius: 5px;
-    opacity: 0.9;
-    transition: opacity 200ms;
+  appearance: none;
+  width: 100%;
+  height: 15px;
+  background-color: transparent;
+  outline: none;
+  border-radius: 15px;
+  opacity: 0.9;
+  border: 2px solid #00ffa1;
+  transition-duration: 200ms;
 }
 
 .slider:hover {
-    opacity: 1;
+  opacity: 1;
+  background-color: rgb(42, 42, 42);
 }
 
 .slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 27px;
-    height: 27px;
-    border-radius: 50%; 
-    background: #0e93ff;
-    cursor: pointer;
+  appearance: none;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #00ffa1;
+  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    appearance: none;
-    width: 27px;
-    height: 27px;
-    border-radius: 50%;
-    background: #0e93ff;
-    cursor: pointer;
+  appearance: none;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #00ffa1;
+  cursor: pointer;
 }
 
 .text-button {
-    cursor: pointer;
-    transition-duration: 300ms;
+  cursor: pointer;
+  transition-duration: 300ms;
 }
 
-.text-button.hover, .text-button:hover {
-    color: #8e8e8e;
+.text-button.hover,
+.text-button:hover {
+  color: #8e8e8e;
 }
 
 .nav_box {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav_box * {
-    color: #e8e8e8;
-    margin: 10px;
-    transition-duration: 200ms;
+  color: #e8e8e8;
+  margin: 10px;
+  transition-duration: 200ms;
 }
 
 .nav_box *:hover {
-    color: #00ffa1;
-    transform: scale(1.2);
+  color: #00ffa1;
+  transform: scale(1.2);
+}
+
+.psem_logo {
+  height: 85px;
+  width: 85px;
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+
+@media all and (min-width: 801px) {
+  .qr_code {
+    height: 85px;
+    width: 85px;
+    top: 15px;
+    right: 115px;
+    position: absolute;
+  }
+}
+
+@media all and (min-width: 581px) and (max-width: 800px) {
+  .qr_code {
+    height: 85px;
+    width: 85px;
+    top: 15px;
+    left: 15px;
+    position: absolute;
+  }
+}
+
+@media all and (max-width: 580px) {
+  .psem_logo {
+    top: 7px !important;
+    right: 7px !important;
+  }
+  .qr_code {
+    display: none;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .psem_logo {
+    display: none;
+  }
 }

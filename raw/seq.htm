@@ -1,0 +1,26 @@
+  <div class="actual-body" style="margin: 50px !important">
+    <input
+      type="text"
+      id="seq-input"
+      oninput="update_seq(this.value)"
+      value="30"
+    />
+    <p id="seq" style="font-size: 20pt"></p>
+  </div>
+  <script>
+    var errors = false;
+    const seqText = document.getElementById("seq");
+    function update_seq(value) {
+      if (isNaN(value)) {
+        seqText.style.color = "#e83030";
+        seqText.innerHTML = "Eingabe ungültig";
+      } else {
+        const n = Number.parseInt(value);
+        seqText.innerHTML = collatz_seq(n);
+        seqText.style.color = "white";
+      }
+    }
+    collatz_init("../collatz.wasm").then(() =>
+      update_seq(document.getElementById("seq-input").value)
+    );
+  </script>
