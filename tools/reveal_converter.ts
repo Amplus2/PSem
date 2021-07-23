@@ -32,3 +32,12 @@ async function traverse_html(html:string) {
 
     return document!.textContent;
 }
+
+
+if (Deno.args.length <= 1) {
+    console.log('missing argument');
+    Deno.exit(1);
+}
+
+const html = await Deno.readFile(Deno.args[0]);
+console.log(html)
