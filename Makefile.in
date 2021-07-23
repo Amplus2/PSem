@@ -41,7 +41,7 @@ dist: all package-lock.json
 	rm -rf computer/ node_modules/ raw/ tools/ tmp/ .github/ .git/ README.md Makefile Makefile.in *.cc configure LICENSE .gitignore package*.json .babelrc
 
 clean:
-	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg $(HTMLS)
+	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg tools/pubspec.lock $(HTMLS)
 
 qr.png:
 	qrencode -o qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
