@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-from shutil import copyfile as cp
-from subprocess import run as system
+from subprocess import run
 
 resolutions = [32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512]
-inkscape_has_o = system('inkscape -o /tmp/nope.png', shell=True, check=False).returncode == 0
+inkscape_has_o = run('inkscape -o /tmp/nope.png', shell=True, check=False).returncode == 0
 formats = {
     'svg': lambda r: f'inkscape -w {r} -h {r} $< {"-o" if inkscape_has_o else "-e"} tmp/$*-{r}.png 2>/dev/null',
     #'png': lambda r: f'convert $< -resize {r}x{r} tmp/$*-{r}.png',
 }
 
-cp('Makefile.in', 'Makefile')
 with open('Makefile', 'r') as f:
     contents = ''
     for line in f.readlines():
