@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt install -y make python3 curl inkscape imagemagick graphviz qrencode clang lld-12 nodejs npm fonts-inter
-      - run: curl -fsSL https://deno.land/x/install/install.sh | sh; export PATH="$DENO_INSTALL/bin:$PATH"
+      - run: curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL=/usr/local sh
       - run: sudo ln -s /usr/bin/wasm-ld-12 /usr/bin/wasm-ld
       - run: curl -Lo /usr/share/fonts/truetype/Manjari.ttf 'https://github.com/google/fonts/raw/main/ofl/manjari/Manjari-Regular.ttf'
       - run: ./configure
@@ -23,5 +23,5 @@ jobs:
       - run: make -j$(nproc) dist
       - uses: actions/upload-artifact@v2
         with:
-          name: package
+          name: package.zip
           path: dist/package.zip
