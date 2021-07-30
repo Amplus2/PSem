@@ -24,21 +24,31 @@ benchmark:
 	$(WASMC) $(WASMFLAGS) $< -o $@
 
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
-                                --remove-empty-attributes --remove-empty-elements --remove-optional-tags \
-                                --remove-redundant-attributes --remove-tag-whitespace
+                                --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
 dist: all package-lock.json
-	npx babel collatz.js -o tmp/collatz.js
-	mv -f tmp/collatz.js collatz.js
+	mkdir -p dist dist/game dist/graph dist/seq dist/stats
+	
 	$(HTML_MINIFY) -o tmp/index.html index.html
-	mv -f tmp/index.html index.html
-	$(HTML_MINIFY) -o tmp/stats.html stats/index.html
-	mv -f tmp/stats.html stats/index.html
-	$(HTML_MINIFY) -o tmp/seq.html seq/index.html
-	mv -f tmp/seq.html seq/index.html
+	$(HTML_MINIFY) -o tmp/game.html game/index.html
 	$(HTML_MINIFY) -o tmp/graph.html graph/index.html
-	mv -f tmp/graph.html graph/index.html
-	rm -rf computer/ node_modules/ raw/ tools/ tmp/ .github/ .git/ README.md Makefile Makefile.in *.cc configure LICENSE .gitignore package*.json .babelrc
+	$(HTML_MINIFY) -o tmp/seq.html seq/index.html
+	$(HTML_MINIFY) -o tmp/stats.html stats/index.html
+	
+	cp tmp/index.html dist/index.html
+	cp tmp/game.html dist/game/index.html
+	cp tmp/graph.html dist/graph/index.html
+	cp tmp/seq.html dist/seq/index.html
+	cp tmp/stats.html dist/stats/index.html
+
+	cp style.css dist/
+
+	npx babel collatz.js -o tmp/collatz.js
+	cp tmp/collatz.js collatz.wasm dist/
+	cp logo.svg logo.ico kurs_logo.svg kurs_logo.ico qr.png dist/
+
+	zip dist/package.zip -r dist/*
+
 
 clean:
 	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg tools/pubspec.lock $(HTMLS)
