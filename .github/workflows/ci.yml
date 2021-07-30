@@ -23,5 +23,5 @@ jobs:
       - run: make -j$(nproc) dist
       - uses: actions/upload-artifact@v2
         with:
-          name: päckla.zip
+          name: karl.zip
           path: dist/
