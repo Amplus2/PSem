@@ -83,6 +83,8 @@ package-lock.json: package.json
 
 .PHONY: all benchmark clean test
 
+# !caution! do not remove these comments
+# auto-generated block comes here
 tmp/%-32.png: %.svg
 	@mkdir -p tmp
 	inkscape -w 32 -h 32 $< -o tmp/$*-32.png 2>/dev/null

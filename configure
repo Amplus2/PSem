@@ -10,11 +10,19 @@ formats = {
 }
 
 cp('Makefile.in', 'Makefile')
-with open('Makefile', 'a') as f:
+with open('Makefile', 'r') as f:
+    contents = ''
+    for line in f.readlines():
+        contents += line
+        if line.startswith('# auto-generated block'):
+            break
+
     for e,c in formats.items():
         for r in resolutions:
-            f.write(f'\ntmp/%-{r}.png: %.{e}\n')
-            f.write('\t@mkdir -p tmp\n')
-            f.write('\t' + c(r) + '\n')
-        f.write(f'\n%.ico:' + ''.join([f' tmp/%-{r}.png' for r in resolutions]) + '\n')
-        f.write('\tconvert tmp/$*-*.png $@\n')
+            contents += f'\ntmp/%-{r}.png: %.{e}\n'
+            contents += '\t@mkdir -p tmp\n'
+            contents += '\t' + c(r) + '\n'
+        contents += f'\n%.ico:' + ''.join([f' tmp/%-{r}.png' for r in resolutions]) + '\n'
+        contents += '\tconvert tmp/$*-*.png $@\n'
+    
+    open('Makefile', 'w').write(contents)
