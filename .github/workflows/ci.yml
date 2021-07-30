@@ -23,6 +23,7 @@ jobs:
       - run: ./configure
       - run: make clean
       - run: make -j$(nproc) dist
+      - run: ls -lah
       - uses: actions/upload-artifact@v2
         with:
           name: package
