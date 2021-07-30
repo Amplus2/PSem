@@ -14,11 +14,9 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt install -y make python3 curl inkscape imagemagick graphviz qrencode clang lld-12 nodejs npm fonts-inter
+      - run: sudo apt install -y make python3 curl inkscape imagemagick graphviz qrencode clang lld-12 nodejs npm fonts-inter cargo
+      - run: cargo install deno --locked
       - run: sudo ln -s /usr/bin/wasm-ld-12 /usr/bin/wasm-ld
-      - run: curl -Lo dart.deb https://storage.googleapis.com/dart-archive/channels/stable/release/latest/linux_packages/dart_2.13.4-1_amd64.deb
-      - run: sudo dpkg -i dart.deb
-      - run: rm -f dart.deb
       - run: curl -Lo /usr/share/fonts/truetype/Manjari.ttf 'https://github.com/google/fonts/raw/main/ofl/manjari/Manjari-Regular.ttf'
       - run: ./configure
       - run: make clean

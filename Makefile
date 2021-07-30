@@ -47,8 +47,8 @@ dist: all package-lock.json
 	cp tmp/collatz.js collatz.wasm dist/
 	cp logo.svg logo.ico kurs_logo.svg kurs_logo.ico qr.png dist/
 
-	zip dist/package.zip -r dist/*
-
+	zip tmp/package.zip -r dist/*
+	cp tmp/package.zip dist/
 
 clean:
 	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg tools/pubspec.lock $(HTMLS)
@@ -56,15 +56,8 @@ clean:
 qr.png:
 	qrencode -o qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
 
-tools/pubspec.lock: tools/pubspec.yaml
-	cd tools && dart pub get
-
-tmp/graph.dot: tools/graph.dart tools/pubspec.lock
-	@mkdir -p tmp
-	dart run tools/graph.dart > tmp/graph.dot
-
-graph/graph.svg: tmp/graph.dot
-	dot -Tsvg -o graph/graph.svg tmp/graph.dot
+graph/graph.svg: tools/graph.ts
+	deno run --allow-write --allow-run --allow-read tools/graph.ts graph/graph.svg
 
 index.html: tools/tmplt raw/index.htm
 	tools/tmplt "" collatz-collection < raw/index.htm > index.html

@@ -35,7 +35,7 @@ For a full rebuild of collatz-collection you will need the following software:
 * A POSIX system (`sh`, `mkdir`, `rm`, `time`, ...)
 * [`make`](https://www.gnu.org/software/make/)
 * [`python3`](https://www.python.org)
-* [`dart`](https://dart.dev)
+* [`deno`](https://deno.land)
 * [`inkscape`](https://inkscape.org)
 * [`imagemagick`](https://imagemagick.org)
 * [`graphviz`](https://graphviz.org)
