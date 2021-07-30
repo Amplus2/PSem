@@ -29,12 +29,10 @@
   <script src=\"$1collatz.js\"></script>
 
   <header class=\"center-children header\">
-    <a href=\"https://github.com/Amplus2/collatz-collection/\" style=\"text-decoration: none;\">
-      <div class=\"sub-header\">
-        <img class=\"logo\" src=\"$1logo.ico\"></img>
-        <h1>collatz-collection</h1>
-      </div>
-    </a>
+    <div class=\"sub-header\" style=\"cursor: default;\">
+      <img class=\"logo\" src=\"$1logo.ico\"></img>
+      <h1>collatz-collection</h1>
+    </div>
     <div class=\"nav_box\">
       <h3><a href=\"$1stats/\">Statistiken</a></h3>
       <h3><a href=\"$1game/\">Spiel</a></h3>
