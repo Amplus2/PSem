@@ -27,28 +27,18 @@ HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes 
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
 dist: all package-lock.json
-	mkdir -p dist dist/game dist/graph dist/seq dist/stats
-	
-	$(HTML_MINIFY) -o tmp/index.html index.html
-	$(HTML_MINIFY) -o tmp/game.html game/index.html
-	$(HTML_MINIFY) -o tmp/graph.html graph/index.html
-	$(HTML_MINIFY) -o tmp/seq.html seq/index.html
-	$(HTML_MINIFY) -o tmp/stats.html stats/index.html
-	
-	cp tmp/index.html dist/index.html
-	cp tmp/game.html dist/game/index.html
-	cp tmp/graph.html dist/graph/index.html
-	cp tmp/seq.html dist/seq/index.html
-	cp tmp/stats.html dist/stats/index.html
+	mkdir -p dist/game/ dist/graph/ dist/seq/ dist/stats/
 
-	cp style.css dist/
+	$(HTML_MINIFY) -o dist/index.html index.html
+	$(HTML_MINIFY) -o dist/game/index.html game/index.html
+	$(HTML_MINIFY) -o dist/graph/index.html graph/index.html
+	$(HTML_MINIFY) -o dist/seq/index.html seq/index.html
+	$(HTML_MINIFY) -o dist/stats/index.html stats/index.html
 
-	npx babel collatz.js -o tmp/collatz.js
-	cp tmp/collatz.js collatz.wasm dist/
-	cp logo.svg logo.ico kurs_logo.svg kurs_logo.ico qr.png dist/
+	cp -f style.css collatz.wasm dist/
 
-	zip tmp/package.zip -r dist/*
-	cp tmp/package.zip dist/
+	npx babel collatz.js -o dist/collatz.js
+	cp -f logo.svg logo.ico kurs_logo.svg kurs_logo.ico qr.png dist/
 
 clean:
 	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg tools/pubspec.lock $(HTMLS)

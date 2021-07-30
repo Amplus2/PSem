@@ -1,5 +1,5 @@
-import * as path from "https://deno.land/std/path/mod.ts";
-import * as gviz from "https://deno.land/x/graphviz/mod.ts";
+import * as path from "https://deno.land/std/path@0.103.0/mod.ts";
+import * as gviz from "https://deno.land/x/graphviz@v0.2.1/mod.ts";
 
 function CollatzStep(i: number): number {
   return i % 2 == 0 ? i / 2 : 3 * i + 1;

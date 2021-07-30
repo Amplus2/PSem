@@ -1,8 +1,7 @@
 .DS_Store
-tmp
+tmp/
 *.stl
-node_modules
+node_modules/
 package-lock.json
-.vscode
-dist.zip
-dist
+.vscode/
+dist/

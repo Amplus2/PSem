@@ -1,4 +1,4 @@
-#!/bin/env -S deno run --allow-net
+#!/usr/bin/env -S deno run --allow-net
 
 import * as deno_dom from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
