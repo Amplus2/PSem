@@ -1,98 +1,11 @@
-<!DOCTYPE html>
-<html lang="de" id="">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#030303" />
-    <title>Spiel zur Collatz-Folge</title>
-    <link rel="stylesheet" href="../style.css" />
-
-    <link rel="shortcut icon" type="image/x-icon" href="../logo.ico" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
-      href="../logo.ico"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/x-icon"
-      sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
-      href="../logo.ico"
-    />
-  </head>
-  <body>
-    <script src="../collatz.js"></script>
-    <img
-      src="../kurs_logo.ico"
-      style="
-        height: 85px;
+<!DOCTYPE html><html lang=de><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content=#030303><title>Spiel zur Collatz-Folge</title><link rel=stylesheet href=../style.css><link rel="shortcut icon"type=image/x-icon href=../logo.ico><link rel=icon type=image/x-icon sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"href=../logo.ico><link rel=apple-touch-icon type=image/x-icon sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"href=../logo.ico></head><body><script src=../collatz.js></script><img src=../kurs_logo.ico style="height: 85px;
         width: 85px;
         top: 15px;
         right: 15px;
-        position: absolute;
-      "
-    />
-
-    <header
-      class="center-children"
-      style="position: absolute; left: 0; right: 0"
-    >
-      <h1 style="font-size: 40pt; text-align: center">
-        score<br /><span id="score" style="color: #00ffa1">0</span>
-      </h1>
-    </header>
-    <div
-      style="height: 100%; width: 50%; float: left; background: #1a1a1a"
-      class="center-children"
-    >
-      <div>
-        <h1 style="font-size: 60pt; margin: 0" id="num1text"></h1>
-        <h1
-          style="margin: 0; text-align: center; font-size: 35pt"
-          id="num1text-steps"
-        ></h1>
-      </div>
-    </div>
-    <div
-      style="height: 100%; width: 50%; float: right; background: transparent"
-      class="center-children"
-    >
-      <div>
-        <h1 onclick="go_next(true)" style="margin: 0; text-align: center">
-          <span style="text-decoration: none" id="higher" class="text-button"
-            >▲<br />mehr</span
-          >
-        </h1>
-        <br />
-        <h1
-          style="font-size: 60pt; margin: 0; text-align: center"
-          id="num2text"
-        ></h1>
-        <br />
-        <h1 onclick="go_next(false)" style="margin: 0; text-align: center">
-          <span style="text-decoration: none" id="lower" class="text-button"
-            >weniger<br />▼</span
-          >
-        </h1>
-      </div>
-    </div>
-
-    <div
-      style="
-        position: absolute;
+        position: absolute;"><header class=center-children style="position: absolute; left: 0; right: 0"><h1 style="font-size: 40pt; text-align: center">score<br><span id=score style="color: #00ffa1">0</span></h1></header><div style="height: 100%; width: 50%; float: left; background: #1a1a1a"class=center-children><div><h1 style="font-size: 60pt; margin: 0"id=num1text></h1><h1 style="margin: 0; text-align: center; font-size: 35pt"id=num1text-steps></h1></div></div><div style="height: 100%; width: 50%; float: right; background: transparent"class=center-children><div><h1 onclick=go_next(true) style="margin: 0; text-align: center"><span style="text-decoration: none"id=higher class=text-button>▲<br>mehr</span></h1><br><h1 style="font-size: 60pt; margin: 0; text-align: center"id=num2text></h1><br><h1 onclick=go_next(false) style="margin: 0; text-align: center"><span style="text-decoration: none"id=lower class=text-button>weniger<br>▼</span></h1></div></div><div style="position: absolute;
         padding: 10px;
         font-size: 22pt;
-        cursor: pointer;
-      "
-      onclick="window.location.href = '../';"
-    >
-      ⯇ Startseite
-    </div>
-
-    <script>
-      const ACCENT_COLOR = "#00ffa1";
+        cursor: pointer;"onclick="window.location.href = '../';">⯇ Startseite</div><script>const ACCENT_COLOR = "#00ffa1";
 
       var last_random;
       function random(max) {
@@ -198,7 +111,4 @@
         update_all_texts();
         fail_body = await (await fetch("fail.htm")).text();
         window.onkeydown = game_keyup;
-      });
-    </script>
-  </body>
-</html>
+      });</script></body></html>

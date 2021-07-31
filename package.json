@@ -1,9 +1,0 @@
-{
-  "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.8",
-    "babel-preset-minify": "^0.5.1",
-    "html-minifier": "^4.0.0"
-  }
-}

@@ -1,8 +1,0 @@
-tmp/
-dist/
-.vscode/
-node_modules/
-
-*.stl
-.DS_Store
-package-lock.json
