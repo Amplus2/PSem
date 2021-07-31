@@ -4,7 +4,7 @@ WASMRUNNER ?= wasmer
 CXXFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -std=c++17
 WASMFLAGS ?= $(CXXFLAGS) -nostdlib -s -Wl,--lto-O3 -Wl,--no-entry -Wl,--export-all
 
-HTMLS = index.html graph/index.html stats/index.html seq/index.html
+HTMLS = index.html graph/index.html stats/index.html seq/index.html game/index.html
 ICOS = img/logo.ico img/kurs_logo.ico img/qr.ico
 
 all: collatz.wasm graph/graph.svg $(ICOS) $(HTMLS)
@@ -41,10 +41,10 @@ dist: all package-lock.json
 
 	cp -f game/fail.htm dist/game/
 	cp -f graph/graph.svg dist/graph/graph.svg
-	cp -f style.css collatz.wasm img/* dist/
+	cp -rf style.css collatz.wasm img dist/
 
 clean:
-	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg tools/pubspec.lock $(HTMLS)
+	rm -rf collatz.wasm *.ico qr.png tmp/ graph/graph.svg $(HTMLS)
 
 img/qr.png:
 	qrencode -o img/qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
