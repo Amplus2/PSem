@@ -45,6 +45,7 @@ dist: $(ICOS) $(HTMLS) tmp/graph.svg tmp/collatz.wasm package-lock.json
 	$(HTML_MINIFY) -o dist/game/fail.htm html/game/fail.htm
 
 	npx babel html/collatz.js -o dist/collatz.js
+	npx babel html/stats.js -o dist/stats/stats.js
 
 	cp -f tmp/graph.svg dist/graph/graph.svg
 
