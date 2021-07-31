@@ -41,7 +41,7 @@ function graphCreate(collatzMax: number): gviz.Digraph {
 async function main(): Promise<number> {
   if (Deno.args.length < 1) {
     console.log(
-      "usage: deno run --allow-write --allow-run <src_file> <file> <max:Int>",
+      "usage: deno run --allow-write --allow-run --allow-read <src_file> <file> <max:Int>",
     );
     return 1;
   }

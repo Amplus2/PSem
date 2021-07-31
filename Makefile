@@ -60,16 +60,16 @@ tmp/graph.svg: tools/graph.ts
 	tools/graph.ts tmp/graph.svg
 
 tmp/index.html: tools/tmplt html/raw/index.htm
-	tools/tmplt "" collatz-collection < html/raw/index.htm > tmp/index.html
+	tools/tmplt "" collatz-collection html/raw/index.htm tmp/index.html
 
 tmp/stats.html: tools/tmplt html/raw/stats.htm
-	tools/tmplt ../ "Statistiken zur Collatz-Folge" < html/raw/stats.htm > tmp/stats.html
+	tools/tmplt ../ "Statistiken zur Collatz-Folge" html/raw/stats.htm tmp/stats.html
 
 tmp/seq.html: tools/tmplt html/raw/seq.htm
-	tools/tmplt ../ Collatz-Folge < html/raw/seq.htm > tmp/seq.html
+	tools/tmplt ../ Collatz-Folge html/raw/seq.htm tmp/seq.html
 
 tmp/graph.html: tools/tmplt html/raw/graph.htm
-	tools/tmplt ../ Collatz-Graph < html/raw/graph.htm > tmp/graph.html
+	tools/tmplt ../ Collatz-Graph html/raw/graph.htm tmp/graph.html
 
 package-lock.json: package.json
 	npm install
