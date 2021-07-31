@@ -17,10 +17,10 @@ with open('Makefile', 'r') as f:
 
     for e,c in formats.items():
         for r in resolutions:
-            contents += f'\ntmp/%-{r}.png: img/%.{e}\n'
+            contents += f'\ntmp/%-{r}.png: html/img/%.{e}\n'
             contents += '\t@mkdir -p tmp\n'
             contents += '\t' + c(r) + '\n'
-    contents += f'\nimg/%.ico:' + ''.join([f' tmp/%-{r}.png' for r in resolutions]) + '\n'
+    contents += f'\ntmp/%.ico:' + ''.join([f' tmp/%-{r}.png' for r in resolutions]) + '\n'
     contents += '\tconvert tmp/$*-*.png $@\n'
 
     open('Makefile', 'w').write(contents)
