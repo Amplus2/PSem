@@ -54,13 +54,15 @@ On a Debian-based system, run these commands:
 
 ```
 apt install -y make python3 curl inkscape imagemagick graphviz qrencode clang lld-12 nodejs npm fonts-inter
-ln -s /usr/bin/wasm-ld-12 /usr/bin/wasm-ld
+```
+```
 curl -Lo /usr/share/fonts/truetype/Manjari.ttf 'https://github.com/google/fonts/raw/main/ofl/manjari/Manjari-Regular.ttf'
-curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL=/usr/local sh
 ```
 
 Even though installing deno without the 'install.sh' is recommended, running this command is fast and easy and gets you deno installed.
-
+```
+curl -fsSL https://deno.land/x/install/install.sh | export DENO_INSTALL=/usr/local sh
+```
 
 ### Building
 1. Generate the Makefile with `./configure`
