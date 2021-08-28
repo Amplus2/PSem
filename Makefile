@@ -27,7 +27,6 @@ tmp/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-
 ICOS = tmp/logo.ico tmp/kurs_logo.ico tmp/qr.ico
 HTMLS = tmp/index.html tmp/graph.html tmp/seq.html tmp/stats.html html/game/index.html html/game/fail.htm
 dist: $(ICOS) $(HTMLS) tmp/graph.svg tmp/collatz.wasm package-lock.json
@@ -40,7 +39,6 @@ dist: $(ICOS) $(HTMLS) tmp/graph.svg tmp/collatz.wasm package-lock.json
 	$(HTML_MINIFY) -o dist/graph/index.html tmp/graph.html
 	$(HTML_MINIFY) -o dist/seq/index.html tmp/seq.html
 	$(HTML_MINIFY) -o dist/stats/index.html tmp/stats.html
-
 	$(HTML_MINIFY) -o dist/game/index.html html/game/index.html
 	$(HTML_MINIFY) -o dist/game/fail.htm html/game/fail.htm
 
@@ -48,11 +46,14 @@ dist: $(ICOS) $(HTMLS) tmp/graph.svg tmp/collatz.wasm package-lock.json
 	npx babel html/stats.js -o dist/stats/stats.js
 
 	cp -f tmp/graph.svg dist/graph/graph.svg
-
 	cp -f html/game/fail.htm dist/game/
 
 clean:
 	rm -rf tmp/ dist/
+
+open: all
+	sleep 0.1 && tools/open.sh http://[::]:8004/ &
+	python3 -m http.server -d dist/ 8004
 
 html/img/qr.png:
 	qrencode -o html/img/qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
