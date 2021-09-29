@@ -2,9 +2,9 @@
 
 import sys
 
-if len(sys.argv) < 5:
-  print(f'usage: {sys.argv[0]} <home_path> <title> <input> <output>')
-  exit(1)
+if len(sys.argv) < 3:
+    print(f'usage: {sys.argv[0]} <home_path> <title>')
+    exit(1)
 
 contents =  f'''
 <!DOCTYPE html>
@@ -50,9 +50,9 @@ contents =  f'''
   <img src="{sys.argv[1]}img/kurs_logo.ico" class="psem_logo">
   <img src="{sys.argv[1]}img/qr.ico" class="qr_code">
 
-{open(sys.argv[3], 'r').read()}
+{''.join(sys.stdin.readlines())}
 </body>
 </html>
 '''
 
-open(sys.argv[4], 'w').write(contents)
+print(contents)

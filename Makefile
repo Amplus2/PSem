@@ -28,7 +28,7 @@ HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes 
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
 ICOS = tmp/logo.ico tmp/kurs_logo.ico tmp/qr.ico
-HTMLS = tmp/index.html tmp/graph.html tmp/seq.html tmp/stats.html html/game/index.html html/game/fail.htm
+HTMLS = tmp/index.html tmp/graph.html tmp/seq.html tmp/stats.html tmp/build.html html/game/index.html html/game/fail.htm
 dist: $(ICOS) $(HTMLS) tmp/graph.svg tmp/collatz.wasm package-lock.json
 	mkdir -p dist/game/ dist/graph/ dist/seq/ dist/stats/ dist/img/
 
@@ -36,6 +36,7 @@ dist: $(ICOS) $(HTMLS) tmp/graph.svg tmp/collatz.wasm package-lock.json
 	cp -f html/style.css tmp/collatz.wasm dist/
 
 	$(HTML_MINIFY) -o dist/index.html tmp/index.html
+	$(HTML_MINIFY) -o dist/build.html tmp/build.html
 	$(HTML_MINIFY) -o dist/graph/index.html tmp/graph.html
 	$(HTML_MINIFY) -o dist/seq/index.html tmp/seq.html
 	$(HTML_MINIFY) -o dist/stats/index.html tmp/stats.html
@@ -52,7 +53,7 @@ clean:
 	rm -rf tmp/ dist/
 
 open: all
-	sleep 0.1 && tools/open.sh http://[::]:8004/ &
+	sleep 0.1 && tools/open.sh http://localhost:8004/ &
 	python3 -m http.server -d dist/ 8004
 
 html/img/qr.png:
@@ -62,21 +63,24 @@ tmp/graph.svg: tools/graph.ts
 	tools/graph.ts tmp/graph.svg
 
 tmp/index.html: tools/tmplt html/raw/index.htm
-	tools/tmplt "" collatz-collection html/raw/index.htm tmp/index.html
+	tools/tmplt "" collatz-collection < html/raw/index.htm > tmp/index.html
 
 tmp/stats.html: tools/tmplt html/raw/stats.htm
-	tools/tmplt ../ "Statistiken zur Collatz-Folge" html/raw/stats.htm tmp/stats.html
+	tools/tmplt ../ "Statistiken zur Collatz-Folge" < html/raw/stats.htm > tmp/stats.html
 
 tmp/seq.html: tools/tmplt html/raw/seq.htm
-	tools/tmplt ../ Collatz-Folge html/raw/seq.htm tmp/seq.html
+	tools/tmplt ../ Collatz-Folge < html/raw/seq.htm > tmp/seq.html
 
 tmp/graph.html: tools/tmplt html/raw/graph.htm
-	tools/tmplt ../ Collatz-Graph html/raw/graph.htm tmp/graph.html
+	tools/tmplt ../ Collatz-Graph < html/raw/graph.htm > tmp/graph.html
+
+tmp/build.html:
+	tools/build_info.sh | tools/tmplt "" Collatz-Build > tmp/build.html
 
 package-lock.json: package.json
 	npm install
 
-.PHONY: all benchmark clean test
+.PHONY: all benchmark clean test tmp/build.html
 
 # !caution! do not remove these comments
 # auto-generated block comes here
