@@ -34,7 +34,7 @@ static constexpr inline i32 first_digit(i64 x) {
   return helper;
 }
 
-} // namespace
+}
 
 extern "C" i32 collatz_steps(i32 n) {
   i64 i = n;

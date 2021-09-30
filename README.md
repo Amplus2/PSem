@@ -42,7 +42,7 @@ For a full rebuild of collatz-collection you will need the following software:
 * [`lld`](https://lld.llvm.org) (for `wasm-ld`)
 * [`python3`](https://www.python.org)
 * [`deno`](https://deno.land)
-* [`npm`](https://npmjs.com) (for `babel` and `html-minify`)
+* [`npx`](https://npmjs.com) (for `babel` and `html-minify`)
 * Optionally [`wasmer`](https://wasmer.io) for testing
 
 and the following fonts:
@@ -65,7 +65,6 @@ curl -fsSL https://deno.land/x/install/install.sh | export DENO_INSTALL=/usr/loc
 ```
 
 ### Building
-1. Generate the Makefile with `./configure`
-2. Delete the previous build: `make clean`
-3. Build: `make -j$(nproc) all`
-4. Optionally test and benchmark: `make test benchmark`
+1. Delete the previous build: `make clean`
+2. Build: `make -j$(nproc) all`
+3. Optionally test and benchmark: `make test benchmark`

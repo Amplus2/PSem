@@ -1,8 +1,10 @@
 CXX ?= c++
 WASMC ?= clang++ --target=wasm32
 WASMRUNNER ?= wasmer
-CXXFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -std=c++17
-WASMFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -std=c++17 -nostdlib -s -Wl,--lto-O3 -Wl,--no-entry -Wl,--export-all
+CXXFLAGS ?= -Wall -Wextra -pedantic -O3 -flto
+CXXFLAGS += -std=c++17
+WASMFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -nostdlib -s -Wl,--lto-O3 -Wl,--no-entry -Wl,--export-all
+WASMFLAGS += -std=c++17
 
 ifeq ($(shell inkscape --export-type svg -o - >/dev/null && echo 1),1)
 	INKSCAPE_EXPORT_FLAG ?= -o
