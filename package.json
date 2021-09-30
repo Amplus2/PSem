@@ -4,6 +4,7 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "babel-preset-minify": "^0.5.1",
+    "csso-cli": "^3.0.0",
     "html-minifier": "^4.0.0"
   }
 }
