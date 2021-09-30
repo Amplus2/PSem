@@ -8,19 +8,21 @@ formats = {
     'png': lambda r: f'convert $< -resize {r}x{r} tmp/$*-{r}.png',
 }
 
+contents = ''
 with open('Makefile', 'r') as f:
-    contents = ''
     for line in f.readlines():
         contents += line
         if line.startswith('# auto-generated block'):
             break
 
-    for e,c in formats.items():
-        for r in resolutions:
-            contents += f'\ntmp/%-{r}.png: html/img/%.{e}\n'
-            contents += '\t@mkdir -p tmp\n'
-            contents += '\t' + c(r) + '\n'
-    contents += f'\ntmp/%.ico:' + ''.join([f' tmp/%-{r}.png' for r in resolutions]) + '\n'
-    contents += '\tconvert tmp/$*-*.png $@\n'
+contents += '\nRES = ' + ' '.join(map(str, resolutions)) + '\n'
 
-    open('Makefile', 'w').write(contents)
+for e,c in formats.items():
+    for r in resolutions:
+        contents += f'\ntmp/%-{r}.png: html/img/%.{e}\n'
+        contents += '\t' + c(r) + '\n'
+contents += '\ntmp/%.ico: $(foreach r,$(RES),tmp/%-$(r).png)' + '\n'
+contents += '\tconvert tmp/$*-*.png $@\n'
+
+with open('Makefile', 'w') as f:
+    f.write(contents)
