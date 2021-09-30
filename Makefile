@@ -35,12 +35,12 @@ dist/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/collatz.js dist/stats/stats.js dist/style.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/graph/graph.svg dist/collatz.wasm
+dist: dist/graph/graph.svg dist/collatz.js dist/stats/stats.js dist/style.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm
 
 dist/style.css: package-lock.json html/style.css
 	npx csso html/style.css -o dist/style.css
 
-dist/game/%: package-lock.json html/game/%
+dist/game/%: html/game/% package-lock.json
 	$(HTML_MINIFY) -o $@ $<
 
 dist/collatz.js: package-lock.json html/collatz.js
@@ -89,7 +89,7 @@ tmp/%-$(1).png: html/img/%.$(2)
 	$(3)
 endef
 
-$(foreach r,$(RES),$(eval $(call picrender,$(r),svg,inkscape -w $(r) -h $(r) $$< $(INKSCAPE_EXPORT_FLAG) tmp/$$*-$(r).png 2>/dev/null)))
+$(foreach r,$(RES),$(eval $(call picrender,$(r),svg,inkscape -w $(r) -h $(r) $$< $(INKSCAPE_EXPORT_FLAG) tmp/$$*-$(r).png)))
 $(foreach r,$(RES),$(eval $(call picrender,$(r),png,convert -resize $(r)x$(r) $$< tmp/$$*-$(r).png)))
 
 dist/img/%.ico: $(foreach r,$(RES),tmp/%-$(r).png)
