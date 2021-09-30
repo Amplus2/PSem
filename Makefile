@@ -37,15 +37,15 @@ HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes 
 
 dist: dist/style.css dist/logo.ico dist/kurs_logo.ico dist/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html html/game/index.html html/game/fail.htm dist/graph/graph.svg dist/collatz.wasm package-lock.json
 
-dist/style.css: html/style.css
+dist/style.css: package-lock.json html/style.css
 	npx csso html/style.css -o dist/style.css
 
-dist/game/%: html/game/%
+dist/game/%: package-lock.json html/game/%
 	$(HTML_MINIFY) -o $@ $<
 
-dist/collatz.js: html/collatz.js
+dist/collatz.js: package-lock.json html/collatz.js
 	npx babel html/collatz.js -o dist/collatz.js
-dist/stats/stats.js: html/stats.js
+dist/stats/stats.js: package-lock.json html/stats.js
 	npx babel html/stats.js -o dist/stats/stats.js
 
 clean:
@@ -62,19 +62,19 @@ dist/graph/graph.svg: tools/graph.ts
 	tools/graph.ts dist/graph/graph.svg
 
 # TODO: simplify using macros
-dist/index.html: tools/tmplt html/raw/index.htm
+dist/index.html: package-lock.json tools/tmplt html/raw/index.htm
 	tools/tmplt "" collatz-collection < html/raw/index.htm | $(HTML_MINIFY) -o dist/index.html
 
-dist/stats/index.html: tools/tmplt html/raw/stats.htm
+dist/stats/index.html: package-lock.json tools/tmplt html/raw/stats.htm
 	tools/tmplt ../ "Statistiken zur Collatz-Folge" < html/raw/stats.htm | $(HTML_MINIFY) -o dist/stats/index.html
 
-dist/seq/index.html: tools/tmplt html/raw/seq.htm
+dist/seq/index.html: package-lock.json tools/tmplt html/raw/seq.htm
 	tools/tmplt ../ Collatz-Folge < html/raw/seq.htm | $(HTML_MINIFY) -o dist/seq/index.html
 
-dist/graph/index.html: tools/tmplt html/raw/graph.htm
+dist/graph/index.html: package-lock.json tools/tmplt html/raw/graph.htm
 	tools/tmplt ../ Collatz-Graph < html/raw/graph.htm | $(HTML_MINIFY) -o dist/graph/index.html
 
-dist/build.html:
+dist/build.html: package-lock.json tools/build_info.sh
 	tools/build_info.sh | tools/tmplt "" Collatz-Build | $(HTML_MINIFY) -o dist/build.html
 
 package-lock.json: package.json
