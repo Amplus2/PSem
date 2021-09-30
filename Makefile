@@ -4,6 +4,12 @@ WASMRUNNER ?= wasmer
 CXXFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -std=c++17
 WASMFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -std=c++17 -nostdlib -s -Wl,--lto-O3 -Wl,--no-entry -Wl,--export-all
 
+ifeq ($(shell inkscape --export-type svg -o - >/dev/null && echo 1),1)
+	INKSCAPE_EXPORT_FLAG ?= -o
+else
+	INKSCAPE_EXPORT_FLAG ?= -e
+endif
+
 $(shell mkdir -p tmp dist)
 
 all: dist
@@ -82,24 +88,15 @@ package-lock.json: package.json
 
 .PHONY: all benchmark clean test tmp/build.html
 
-# !caution! do not remove these comments
-# auto-generated block comes here
-
 RES = 32 64 96 128 160 192 224 256 288 320 352 384 416 448 480 512
 
-define svg
-tmp/%-$(1).png: html/img/%.svg
-	inkscape -w $(1) -h $(1) $$< -o tmp/$$*-$(1).png 2>/dev/null
+define picrender
+tmp/%-$(1).png: html/img/%.$(2)
+	$(3)
 endef
 
-$(foreach r,$(RES),$(eval $(call svg,$(r))))
-
-define png
-tmp/%-$(1).png: html/img/%.png
-	convert $$< -resize $(1)x$(1) tmp/$$*-$(1).png
-endef
-
-$(foreach r,$(RES),$(eval $(call png,$(r))))
+$(foreach r,$(RES),$(eval $(call picrender,$(r),svg,inkscape -w $(r) -h $(r) $$< $(INKSCAPE_EXPORT_FLAG) tmp/$$*-$(r).png 2>/dev/null)))
+$(foreach r,$(RES),$(eval $(call picrender,$(r),png,convert -resize $(r)x$(r) $$< tmp/$$*-$(r).png)))
 
 tmp/%.ico: $(foreach r,$(RES),tmp/%-$(r).png)
 	convert tmp/$*-*.png $@
