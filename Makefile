@@ -35,7 +35,7 @@ dist/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/logo.ico dist/kurs_logo.ico dist/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html html/game/index.html html/game/fail.htm dist/graph/graph.svg dist/collatz.wasm package-lock.json
+dist: dist/style.css dist/logo.ico dist/kurs_logo.ico dist/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html html/game/index.html html/game/fail.htm dist/graph/graph.svg dist/collatz.wasm package-lock.json
 
 dist/style.css: html/style.css
 	npx csso html/style.css -o dist/style.css
