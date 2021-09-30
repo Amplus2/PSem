@@ -4,8 +4,8 @@ from subprocess import run
 resolutions = [32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512]
 inkscape_has_o = run('inkscape -o /tmp/nope.png', shell=True, check=False).returncode == 0
 formats = {
-    'svg': lambda r: f'inkscape -w {r} -h {r} $< {"-o" if inkscape_has_o else "-e"} tmp/$*-{r}.png 2>/dev/null',
-    'png': lambda r: f'convert $< -resize {r}x{r} tmp/$*-{r}.png',
+    'svg': f'inkscape -w $(1) -h $(1) $$< {"-o" if inkscape_has_o else "-e"} tmp/$$*-$(1).png 2>/dev/null',
+    'png': 'convert $$< -resize $(1)x$(1) tmp/$$*-$(1).png',
 }
 
 contents = ''
@@ -18,9 +18,12 @@ with open('Makefile', 'r') as f:
 contents += '\nRES = ' + ' '.join(map(str, resolutions)) + '\n'
 
 for e,c in formats.items():
-    for r in resolutions:
-        contents += f'\ntmp/%-{r}.png: html/img/%.{e}\n'
-        contents += '\t' + c(r) + '\n'
+    contents += f'\ndefine {e}\n'
+    contents += f'tmp/%-$(1).png: html/img/%.{e}\n'
+    contents += f'\t{c}\n'
+    contents += 'endef\n\n'
+    contents += f'$(foreach r,$(RES),$(eval $(call {e},$(r))))\n'
+
 contents += '\ntmp/%.ico: $(foreach r,$(RES),tmp/%-$(r).png)' + '\n'
 contents += '\tconvert tmp/$*-*.png $@\n'
 
