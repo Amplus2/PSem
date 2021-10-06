@@ -35,7 +35,7 @@ dist/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/graph/graph.svg dist/collatz.js dist/stats/stats.js dist/style.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm
+dist: dist/graph/graph.svg dist/collatz.js dist/stats/stats.js dist/style.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm dist/mathe-musik/
 
 dist/style.css: package-lock.json html/style.css
 	npx csso html/style.css -o dist/style.css
@@ -76,6 +76,10 @@ dist/graph/index.html: package-lock.json tools/tmplt html/raw/graph.htm
 
 dist/build.html: package-lock.json tools/build_info.sh
 	tools/build_info.sh | tools/tmplt "" Collatz-Build | $(HTML_MINIFY) -o dist/build.html
+
+dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
+	mkdir -p dist/mathe-musik/
+	cp html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png $@
 
 package-lock.json: package.json
 	npm install
