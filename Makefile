@@ -78,8 +78,8 @@ dist/build.html: package-lock.json tools/build_info.sh
 	tools/build_info.sh | tools/tmplt "" Collatz-Build | $(HTML_MINIFY) -o dist/build.html
 
 dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
-	mkdir -p dist/mathe-musik/
-	cp html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png $@
+	mkdir -p $@
+	cp $? $@
 
 package-lock.json: package.json
 	npm install
