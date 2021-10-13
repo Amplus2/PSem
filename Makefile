@@ -6,11 +6,7 @@ CXXFLAGS += -std=c++17
 WASMFLAGS ?= -Wall -Wextra -pedantic -O3 -flto -nostdlib -s -Wl,--lto-O3 -Wl,--no-entry -Wl,--export-all
 WASMFLAGS += -std=c++17
 
-ifeq ($(shell inkscape --export-type svg -o - >/dev/null && echo 1),1)
-	INKSCAPE_EXPORT_FLAG ?= -o
-else
-	INKSCAPE_EXPORT_FLAG ?= -e
-endif
+INKSCAPE_EXPORT_FLAG = -$(shell inkscape --export-type svg -o - >/dev/null && echo o || echo e)
 
 $(shell mkdir -p tmp dist/game dist/graph dist/seq dist/stats dist/img)
 
