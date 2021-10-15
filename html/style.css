@@ -173,6 +173,10 @@ button:active {
   position: absolute;
 }
 
+.qr_code {
+  image-rendering: pixelated;
+}
+
 @media all and (min-width: 801px) {
   .qr_code {
     height: 85px;
