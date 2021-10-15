@@ -71,7 +71,7 @@ dist/graph/index.html: package-lock.json tools/tmplt html/raw/graph.htm
 	tools/tmplt ../ Collatz-Graph < html/raw/graph.htm | $(HTML_MINIFY) -o dist/graph/index.html
 
 dist/build.html: package-lock.json tools/build_info.sh
-	tools/build_info.sh | tools/tmplt "" Collatz-Build | $(HTML_MINIFY) -o dist/build.html
+	tools/build_info.sh | tools/tmplt "" PSem-Build | $(HTML_MINIFY) -o dist/build.html
 
 dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
 	mkdir -p $@
@@ -80,7 +80,7 @@ dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/m
 package-lock.json: package.json
 	npm install
 
-.PHONY: all benchmark clean dist test tmp/build.html
+.PHONY: all benchmark clean dist test dist/build.html
 
 RES = 32 64 96 128 160 192 224 256 288 320 352 384 416 448 480 512
 
