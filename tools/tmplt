@@ -16,7 +16,7 @@ contents =  f'''
   <meta name="theme-color" content="#000000">
   <title>{sys.argv[2]}</title>
   <meta name="description" content="Die collatz-collection ist eine Sammlung von Statistiken und einem zugehörigen Spiel über das Collatz-Problem.">
-  <link rel="stylesheet" href="{sys.argv[1]}style.css">
+  <link rel="stylesheet" href="{sys.argv[1]}kaskadierend.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
 
   <link rel="shortcut icon"

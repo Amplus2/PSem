@@ -31,10 +31,10 @@ dist/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/graph/graph.svg dist/collatz.js dist/stats/stats.js dist/style.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm dist/mathe-musik/
+dist: dist/graph/graph.svg dist/collatz.js dist/stats/stats.js dist/kaskadierend.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm dist/mathe-musik/
 
-dist/style.css: package-lock.json html/style.css
-	npx csso html/style.css -o dist/style.css
+dist/kaskadierend.css: package-lock.json html/kaskadierend.css
+	npx csso html/kaskadierend.css -o dist/kaskadierend.css
 
 dist/game/%: html/game/% package-lock.json
 	$(HTML_MINIFY) -o $@ $<
