@@ -31,7 +31,7 @@ dist/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/graph/graph.svg dist/collatz.js dist/stats/stats.js dist/kaskadierend.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm dist/mathe-musik/
+dist: dist/collatz.js dist/stats/stats.js dist/kaskadierend.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm dist/mathe-musik/ dist/graph/graph.svg
 
 dist/kaskadierend.css: package-lock.json html/kaskadierend.css
 	npx csso html/kaskadierend.css -o dist/kaskadierend.css
@@ -41,6 +41,7 @@ dist/game/%: html/game/% package-lock.json
 
 dist/collatz.js: package-lock.json html/collatz.js
 	npx babel html/collatz.js -o dist/collatz.js
+	
 dist/stats/stats.js: package-lock.json html/stats.js
 	npx babel html/stats.js -o dist/stats/stats.js
 
