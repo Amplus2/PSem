@@ -8,7 +8,7 @@ WASMFLAGS += -std=c++17
 
 INKSCAPE_EXPORT_FLAG = -$(shell inkscape --export-type svg -o - >/dev/null && echo o || echo e)
 
-$(shell mkdir -p tmp dist/game dist/graph dist/seq dist/stats dist/img)
+$(shell mkdir -p tmp dist/cc/game dist/cc/graph dist/cc/seq dist/cc/stats dist/img)
 
 all: dist
 
@@ -22,8 +22,8 @@ benchmark:
 	time sh -c '$(WASMRUNNER) tmp/bench.wasm -i main 0 0 > /dev/null'
 	time tmp/benchmarkexe
 
-dist/collatz.wasm: cpp/collatz.cc
-	$(WASMC) $(WASMFLAGS) cpp/collatz.cc -o dist/collatz.wasm
+dist/cc/collatz.wasm: cpp/collatz.cc
+	$(WASMC) $(WASMFLAGS) cpp/collatz.cc -o dist/cc/collatz.wasm
 
 %.wasm: %.cc
 	$(WASMC) $(WASMFLAGS) $< -o $@
@@ -31,19 +31,19 @@ dist/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/collatz.js dist/stats/stats.js dist/kaskadierend.css dist/img/logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/index.html dist/graph/index.html dist/seq/index.html dist/stats/index.html dist/build.html dist/game/index.html dist/game/fail.htm dist/collatz.wasm dist/mathe-musik/ dist/graph/graph.svg
+dist: dist/cc/collatz.js dist/cc/stats/stats.js dist/kaskadierend.css dist/img/cc_logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/cc/index.html dist/cc/graph/index.html dist/cc/seq/index.html dist/cc/stats/index.html dist/build.html dist/cc/game/index.html dist/cc/game/fail.htm dist/cc/collatz.wasm dist/mathe-musik/ dist/cc/graph/graph.svg
 
 dist/kaskadierend.css: package-lock.json html/kaskadierend.css
 	npx csso html/kaskadierend.css -o dist/kaskadierend.css
 
-dist/game/%: html/game/% package-lock.json
+dist/cc/game/%: html/cc/game/% package-lock.json
 	$(HTML_MINIFY) -o $@ $<
 
-dist/collatz.js: package-lock.json html/collatz.js
-	npx babel html/collatz.js -o dist/collatz.js
+dist/cc/collatz.js: package-lock.json html/cc/collatz.js
+	npx babel html/cc/collatz.js -o dist/cc/collatz.js
 	
-dist/stats/stats.js: package-lock.json html/stats.js
-	npx babel html/stats.js -o dist/stats/stats.js
+dist/cc/stats/stats.js: package-lock.json html/cc/stats.js
+	npx babel html/cc/stats.js -o dist/cc/stats/stats.js
 
 clean:
 	rm -rf tmp/ dist/ package-lock.json
@@ -55,21 +55,21 @@ open: all
 html/img/qr.png:
 	qrencode -o html/img/qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
 
-dist/graph/graph.svg: tools/graph.ts
-	tools/graph.ts dist/graph/graph.svg
+dist/cc/graph/graph.svg: tools/graph.ts
+	tools/graph.ts dist/cc/graph/graph.svg
 
 # TODO: simplify using macros
-dist/index.html: package-lock.json tools/tmplt html/raw/index.htm
-	tools/tmplt "" collatz-collection < html/raw/index.htm | $(HTML_MINIFY) -o dist/index.html
+dist/cc/index.html: package-lock.json tools/tmplt html/cc/raw/index.htm
+	tools/tmplt "" collatz-collection < html/cc/raw/index.htm | $(HTML_MINIFY) -o dist/cc/index.html
 
-dist/stats/index.html: package-lock.json tools/tmplt html/raw/stats.htm
-	tools/tmplt ../ "Statistiken zur Collatz-Folge" < html/raw/stats.htm | $(HTML_MINIFY) -o dist/stats/index.html
+dist/cc/stats/index.html: package-lock.json tools/tmplt html/cc/raw/stats.htm
+	tools/tmplt ../ "Statistiken zur Collatz-Folge" < html/cc/raw/stats.htm | $(HTML_MINIFY) -o dist/cc/stats/index.html
 
-dist/seq/index.html: package-lock.json tools/tmplt html/raw/seq.htm
-	tools/tmplt ../ Collatz-Folge < html/raw/seq.htm | $(HTML_MINIFY) -o dist/seq/index.html
+dist/cc/seq/index.html: package-lock.json tools/tmplt html/cc/raw/seq.htm
+	tools/tmplt ../ Collatz-Folge < html/cc/raw/seq.htm | $(HTML_MINIFY) -o dist/cc/seq/index.html
 
-dist/graph/index.html: package-lock.json tools/tmplt html/raw/graph.htm
-	tools/tmplt ../ Collatz-Graph < html/raw/graph.htm | $(HTML_MINIFY) -o dist/graph/index.html
+dist/cc/graph/index.html: package-lock.json tools/tmplt html/cc/raw/graph.htm
+	tools/tmplt ../ Collatz-Graph < html/cc/raw/graph.htm | $(HTML_MINIFY) -o dist/cc/graph/index.html
 
 dist/build.html: package-lock.json tools/build_info.sh
 	tools/build_info.sh | tools/tmplt "" PSem-Build | $(HTML_MINIFY) -o dist/build.html

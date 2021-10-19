@@ -43,7 +43,7 @@ For a full rebuild of collatz-collection you will need the following software:
 * [`python3`](https://www.python.org)
 * [`deno`](https://deno.land)
 * [`npx`](https://npmjs.com) (for `babel` and `html-minify`)
-* [`deno`](https://deno.land)
+* [`deno`](https://deno.land) (do not install it via snap as `Deno.run` wouldn't work properly)
 * [`graphviz`](https://graphviz.org/) (for `dot`)
 * Optionally [`wasmer`](https://wasmer.io) for testing
 
