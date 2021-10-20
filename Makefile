@@ -31,7 +31,7 @@ dist/cc/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/index.html dist/cc/collatz.js dist/cc/stats/stats.js dist/kaskadierend.css dist/img/cc_logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/cc/index.html dist/cc/graph/index.html dist/cc/seq/index.html dist/cc/stats/index.html dist/build.html dist/cc/game/index.html dist/cc/game/fail.htm dist/cc/collatz.wasm dist/mathe-musik/ dist/cc/graph/graph.svg
+dist: dist/img/index-placeholder.png dist/index.html dist/cc/collatz.js dist/cc/stats/stats.js dist/kaskadierend.css dist/img/cc_logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/cc/index.html dist/cc/graph/index.html dist/cc/seq/index.html dist/cc/stats/index.html dist/build.html dist/cc/game/index.html dist/cc/game/fail.htm dist/cc/collatz.wasm dist/mathe-musik/ dist/cc/graph/graph.svg
 
 dist/index.html: html/index.html
 	cp $< $@
@@ -95,6 +95,9 @@ endef
 
 $(foreach r,$(RES),$(eval $(call picrender,$(r),svg,inkscape -w $(r) -h $(r) $$< $(INKSCAPE_EXPORT_FLAG) tmp/$$*-$(r).png)))
 $(foreach r,$(RES),$(eval $(call picrender,$(r),png,convert -resize $(r)x$(r) $$< tmp/$$*-$(r).png)))
+
+dist/img/index-placeholder.png: html/img/index-placeholder.png
+	cp $< $@
 
 dist/img/%.ico: $(foreach r,$(RES),tmp/%-$(r).png)
 	convert tmp/$*-*.png $@
