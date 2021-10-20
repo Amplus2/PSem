@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spiel Mal Mathe</title>
 
-    <link rel="stylesheet" href="kaskadierend.css">
-
     <link rel="shortcut icon" type="image/x-icon" href="img/kurs_logo.ico">
     <link rel="icon" type="image/x-icon"
         sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
@@ -18,15 +16,61 @@
         href="img/kurs_logo.ico">
 </head>
 
-<body class="center-children" style="width: 100%;">
-    <div style="margin: 40px; padding: 10px; background-color: grey;">
-        <img src="img/index-placeholder.png" alt="Platzhalter">
-        <a href="cc/">Sammlung zum Collatz-Problem</a>
-    </div>
-    <div style="margin: 40px; padding: 10px; background-color: grey;">
-        <img src="img/index-placeholder.png" alt="Platzhalter">
-        <a href="mathe-musik/">Mathematik in der Musik</a>
-    </div>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Inter:400");
+
+    a {
+        color: white;
+    }
+
+    html {
+        font-family: "Inter", sans-serif;
+        color: #e8e8e8;
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        width: 100%;
+        display: grid;
+        place-items: center;
+        background-color: #161616;
+    }
+
+    .item div {
+        margin: 40px;
+        padding: 20px;
+        background-color: #52525250;
+        display: inline-block;
+    }
+
+    .item div figcaption {
+        text-align: center;
+        font-size: 38pt;
+    }
+
+    .logo {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        height: 120px;
+    }
+</style>
+
+<body>
+    <img src="img/kurs_logo.ico" class="logo">
+    <a href="mathe-musik/" class="item">
+        <div>
+            <img src="img/index-placeholder.png">
+            <figcaption>Mathematik in der Musik</figcaption>
+        </div>
+    </a>
+    <a href="cc/" class="item">
+        <div>
+            <img src="img/index-placeholder.png">
+            <figcaption>Sammlung zum Collatz-Problem</figcaption>
+        </div>
+    </a>
 </body>
 
 </html>
