@@ -6,6 +6,10 @@
   background: white;
 }
 
+a {
+  color: white;
+}
+
 input {
   background-color: #161616;
   outline: #e8e8e8;
