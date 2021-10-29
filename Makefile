@@ -19,7 +19,7 @@ test:
 benchmark:
 	$(WASMC) $(WASMFLAGS) cpp/benchmark.cc -o tmp/bench.wasm
 	$(CXX) $(CXXFLAGS) cpp/benchmark.cc -o tmp/benchmarkexe
-	time sh -c '$(WASMRUNNER) tmp/bench.wasm -i main 0 0 > /dev/null'
+	time sh -c '$(WASMRUNNER) tmp/bench.wasm -i main 0 0 >/dev/null'
 	time tmp/benchmarkexe
 
 dist/cc/collatz.wasm: cpp/collatz.cc
@@ -59,7 +59,7 @@ html/img/qr.png:
 	qrencode -o html/img/qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
 
 dist/cc/graph/graph.svg: tools/graph.ts
-	tools/graph.ts dist/cc/graph/graph.svg
+	tools/graph.ts | dot -Tsvg | npx svgo -i - -o dist/cc/graph/graph.svg --multipass
 
 # TODO: simplify using macros
 dist/cc/index.html: package-lock.json tools/tmplt html/cc/raw/index.htm

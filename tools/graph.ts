@@ -1,6 +1,5 @@
 #!/usr/bin/env -S deno run --allow-write --allow-run --allow-read 
 
-import * as path from "https://deno.land/std@0.103.0/path/mod.ts";
 import * as gviz from "https://deno.land/x/graphviz@v0.2.1/mod.ts";
 
 function CollatzStep(i: number): number {
@@ -38,31 +37,14 @@ function graphCreate(collatzMax: number): gviz.Digraph {
   });
 }
 
-async function main(): Promise<number> {
-  if (Deno.args.length < 1) {
-    console.log(
-      "usage: deno run --allow-write --allow-run --allow-read <src_file> <file> <max:Int>",
-    );
-    return 1;
+let max = 5000;
+if (Deno.args.length >= 1) {
+  max = Number(Deno.args[0]);
+  if (isNaN(max) || max <= 1 || max % 1 != 0) {
+    console.error("expected positive integer above 1 as the maximum");
+    Deno.exit(1);
   }
-
-  let max = 5000;
-  if (Deno.args.length >= 2) {
-    max = Number(Deno.args[1]);
-    if (isNaN(max) || max <= 1 || max % 1 != 0) {
-      console.error("expected positive integer above 1 as a second argument");
-      return 1;
-    }
-  }
-
-  const graph = graphCreate(max);
-
-  const __dirname = Deno.cwd();
-  await gviz.renderDot(graph, path.resolve(__dirname, Deno.args[0]), {
-    format: "svg",
-  });
-
-  return 0;
 }
 
-Deno.exit(await main());
+const graph = graphCreate(max);
+console.log(gviz.toDot(graph));
