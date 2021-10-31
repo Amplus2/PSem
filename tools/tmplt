@@ -2,9 +2,12 @@
 
 import sys
 
-if len(sys.argv) < 3:
-    print(f'usage: {sys.argv[0]} <home_path> <title>')
+if len(sys.argv) < 4:
+    print(f'usage: {sys.argv[0]} <home_path> <title> <opts>', file=sys.stderr)
     exit(1)
+
+texcss = '\n  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">' if 'tex' in sys.argv[3] else ''
+texjs = '\n  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous" onload="const t = document.getElementsByClassName(\'tex\'); for(var i = 0; i < t.length; i++) { katex.render(t.item(i).innerHTML, t.item(i)); }"></script>' if 'tex' in sys.argv[3] else ''
 
 contents =  f'''
 <!DOCTYPE html>
@@ -15,8 +18,7 @@ contents =  f'''
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
   <title>{sys.argv[2]}</title>
-  <link rel="stylesheet" href="{sys.argv[1]}../kaskadierend.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+  <link rel="stylesheet" href="{sys.argv[1]}../kaskadierend.css">{texcss}
 
   <link rel="shortcut icon"
     type="image/x-icon"
@@ -32,13 +34,13 @@ contents =  f'''
 </head>
 
 <body>
-  <script src="{sys.argv[1]}collatz.js"></script>
+  <script src="{sys.argv[1]}collatz.js"></script>{texjs}
 
   <header class="center-children header">
-    <div class="sub-header" style="cursor: default;">
+    <a href="{sys.argv[1]}" class="sub-header">
       <img class="logo" src="{sys.argv[1]}../img/cc_logo.ico"></img>
       <h1>collatz-collection</h1>
-    </div>
+    </a>
     <div class="nav_box">
       <h3><a href="{sys.argv[1]}stats/">Statistiken</a></h3>
       <h3><a href="{sys.argv[1]}game/">Spiel</a></h3>

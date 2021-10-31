@@ -20,42 +20,42 @@
         body {
             display: grid;
             place-items: center;
+            grid-template-columns: 1fr 1fr;
             background-color: #161616;
         }
 
+        .item {
+            text-align: center;
+            font-size: 24pt;
+        }
+
         .item div {
-            margin: 40px;
+            margin: 20px;
             padding: 20px;
+            width: 420px;
             background-color: #52525250;
             display: inline-block;
-        }
-
-        .item div figcaption {
-            text-align: center;
-            font-size: 38pt;
-        }
-
-        .logo {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            height: 120px;
+            border-radius: 25px;
         }
     </style>
 </head>
 
 <body>
-    <img src="img/kurs_logo.ico" class="logo">
+    <img src="img/kurs_logo.ico" class="psem_logo">
     <a href="mathe-musik/" class="item">
         <div>
-            <img src="img/index-placeholder.png">
-            <figcaption>Mathematik in der Musik</figcaption>
+            <center>
+                <img src="img/index-placeholder.png" width="400" height="300">
+                <figcaption>Mathematik in der Musik</figcaption>
+            </center>
         </div>
     </a>
     <a href="cc/" class="item">
         <div>
-            <img src="img/index-placeholder.png">
-            <figcaption>Sammlung zum Collatz-Problem</figcaption>
+            <center>
+                <img src="img/index-placeholder.png" width="400" height="300">
+                <figcaption>Das Collatz-Problem</figcaption>
+            </center>
         </div>
     </a>
 </body>

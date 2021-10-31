@@ -63,19 +63,19 @@ dist/cc/graph/graph.svg: tools/graph.ts
 
 # TODO: simplify using macros
 dist/cc/index.html: package-lock.json tools/tmplt html/cc/raw/index.htm
-	tools/tmplt "" collatz-collection < html/cc/raw/index.htm | $(HTML_MINIFY) -o dist/cc/index.html
+	tools/tmplt "" collatz-collection tex < html/cc/raw/index.htm | $(HTML_MINIFY) -o dist/cc/index.html
 
 dist/cc/stats/index.html: package-lock.json tools/tmplt html/cc/raw/stats.htm
-	tools/tmplt ../ "Statistiken zur Collatz-Folge" < html/cc/raw/stats.htm | $(HTML_MINIFY) -o dist/cc/stats/index.html
+	tools/tmplt ../ "Statistiken zur Collatz-Folge" "" < html/cc/raw/stats.htm | $(HTML_MINIFY) -o dist/cc/stats/index.html
 
 dist/cc/seq/index.html: package-lock.json tools/tmplt html/cc/raw/seq.htm
-	tools/tmplt ../ Collatz-Folge < html/cc/raw/seq.htm | $(HTML_MINIFY) -o dist/cc/seq/index.html
+	tools/tmplt ../ Collatz-Folge "" < html/cc/raw/seq.htm | $(HTML_MINIFY) -o dist/cc/seq/index.html
 
 dist/cc/graph/index.html: package-lock.json tools/tmplt html/cc/raw/graph.htm
-	tools/tmplt ../ Collatz-Graph < html/cc/raw/graph.htm | $(HTML_MINIFY) -o dist/cc/graph/index.html
+	tools/tmplt ../ Collatz-Graph "" < html/cc/raw/graph.htm | $(HTML_MINIFY) -o dist/cc/graph/index.html
 
 dist/build.html: package-lock.json tools/build_info.sh
-	tools/build_info.sh | tools/tmplt "" PSem-Build | $(HTML_MINIFY) -o dist/build.html
+	tools/build_info.sh | tools/tmplt "" PSem-Build "" | $(HTML_MINIFY) -o dist/build.html
 
 dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
 	mkdir -p $@
