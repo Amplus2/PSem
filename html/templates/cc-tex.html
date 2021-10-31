@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <title>%TITLE%</title>
+  <link rel="stylesheet" href="%BASE%../kaskadierend.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+
+  <link rel="shortcut icon"
+    type="image/x-icon"
+    href="%BASE%../img/cc_logo.ico">
+  <link rel="icon"
+    type="image/x-icon"
+    sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
+    href="%BASE%../img/cc_logo.ico">
+  <link rel="apple-touch-icon"
+    type="image/x-icon"
+    sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
+    href="%BASE%../img/cc_logo.ico">
+</head>
+
+<body>
+  <script src="%BASE%collatz.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous" onload="
+      const t = document.getElementsByClassName('tex');
+      for(var i = 0; i < t.length; i++) {
+        katex.render(t.item(i).innerHTML, t.item(i));
+      }"></script>
+
+  <header class="center-children header">
+    <a href="%BASE%" class="sub-header">
+      <img class="logo" src="%BASE%../img/cc_logo.ico"></img>
+      <h1>collatz-collection</h1>
+    </a>
+    <div class="nav_box">
+      <h3><a href="%BASE%stats/">Statistiken</a></h3>
+      <h3><a href="%BASE%game/">Spiel</a></h3>
+      <h3><a href="%BASE%seq/">Collatz-Folgen</a></h3>
+    </div>
+  </header>
+
+  <img src="%BASE%../img/kurs_logo.ico" class="psem_logo">
+  <img src="%BASE%../img/qr.ico" class="qr_code">
+
+%BODY%
+</body>
+</html>
