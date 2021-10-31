@@ -17,47 +17,44 @@
 
     <link rel="stylesheet" href="kaskadierend.css">
     <style>
-        body {
+        .grid {
+            padding: 100px;
             display: grid;
             place-items: center;
             grid-template-columns: 1fr 1fr;
-            background-color: #161616;
         }
 
-        .item {
+        .grid .item div {
             text-align: center;
             font-size: 24pt;
-        }
-
-        .item div {
             margin: 20px;
             padding: 20px;
             width: 420px;
             background-color: #52525250;
             display: inline-block;
             border-radius: 25px;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
     <img src="img/kurs_logo.ico" class="psem_logo">
-    <a href="mathe-musik/" class="item">
-        <div>
-            <center>
+    <img src="img/qr.ico" class="qr_code">
+    <div class="grid">
+        <a href="mathe-musik/" class="item">
+            <div>
                 <img src="img/index-placeholder.png" width="400" height="300">
                 <figcaption>Mathematik in der Musik</figcaption>
-            </center>
-        </div>
-    </a>
-    <a href="cc/" class="item">
-        <div>
-            <center>
+            </div>
+        </a>
+        <a href="cc/" class="item">
+            <div>
                 <img src="img/index-placeholder.png" width="400" height="300">
                 <figcaption>Das Collatz-Problem</figcaption>
-            </center>
-        </div>
-    </a>
+            </div>
+        </a>
+    </div>
 </body>
 
 </html>
