@@ -56,7 +56,7 @@ open: all
 	python3 -m http.server -d dist/ 8004
 
 html/img/qr.png:
-	qrencode -o html/img/qr.png "https://www.gymnasium-pegnitz.de/unterricht/faecher/mathematik/SpielMalMathe/"
+	qrencode -o html/img/qr.png "https://www.gymnasium-pegnitz.de/wp-content/uploads/psem-dist/"
 
 dist/cc/graph/graph.svg: tools/graph.ts
 	tools/graph.ts | dot -Tsvg | npx svgo -i - -o dist/cc/graph/graph.svg --multipass
