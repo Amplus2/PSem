@@ -20,38 +20,65 @@
         .grid {
             padding: 100px;
             display: grid;
+            grid-auto-flow: row;
             place-items: center;
-            grid-template-columns: 1fr 1fr;
         }
 
         .grid .item div {
             text-align: center;
             font-size: 24pt;
-            margin: 20px;
-            padding: 20px;
-            width: 420px;
-            background-color: #52525250;
+            margin: 40px;
+            padding: 35px;
+            background-color: #83838350 !important;
             display: inline-block;
-            border-radius: 25px;
+            border-radius: 18px;
+        }
+
+        .item div figcaption {
             text-align: center;
+            font-size: 38pt;
+        }
+
+        .logo {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            height: 120px;
+            border-radius: 25px;
+}
+
+        .grid .item div img {
+            width: 400;
+            height: 300;
         }
     </style>
 </head>
 
 <body>
     <img src="img/kurs_logo.ico" class="psem_logo">
-    <img src="img/qr.ico" class="qr_code">
     <div class="grid">
         <a href="mathe-musik/" class="item">
             <div>
-                <img src="img/index-placeholder.png" width="400" height="300">
+                <img src="img/index-placeholder.png">
                 <figcaption>Mathematik in der Musik</figcaption>
             </div>
         </a>
         <a href="cc/" class="item">
             <div>
-                <img src="img/index-placeholder.png" width="400" height="300">
+                <img src="img/index-placeholder.png">
                 <figcaption>Das Collatz-Problem</figcaption>
+            </div>
+        </a>
+        <a href="aequator/" class="item">
+            <div>
+                <img src="img/index-placeholder.png">
+                <figcaption>Äquatoraufgabe</figcaption>
+            </div>
+        </a>
+        <a href="https://gfs.khmeyberg.de/BilderbuchMathematik/paradoxa.html" class="item">
+            <div>
+                <img src="img/index-placeholder.png">
+                <figcaption>Das Problem des enstandenen Quadrats</figcaption>
             </div>
         </a>
     </div>
