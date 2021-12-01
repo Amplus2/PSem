@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Äquatoraufgabe</title>
+
+    <link rel="stylesheet" href="../kaskadierend.css">
+</head>
+<body class="center-children">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous" onload="
+        const t = document.getElementsByClassName('tex');
+        for(var i = 0; i < t.length; i++) {
+            katex.render(t.item(i).innerHTML, t.item(i));
+        }"></script>
+    <div style="max-width: 800px;">
+        <h1>Spielanleitung Äquatoraufgabe</h1>
+        <h2>Einführung</h2>
+        <p>Die Kugeln stellen drei unterschiedliche Planeten unseres Sonnensystems 
+            dar. Die Längen der weißen Seile entsprechen jeweils dem Umfang der 
+            dazugehörigen Planeten plus Verlängerung von 50cm.</p>
+        
+        <h2>Aufgabe</h2>
+        <ol>
+            <li>Lege die weißen Seile um die jeweiligen Planeten, sodass der Abstand 
+                zwischen den Planeten und Seilen an allen Stellen gleich groß ist.</li>
+            <li>Wie groß ist der Abstand zwischen den Planeten und den jeweils 
+                dazugehörigen Seilen?</li>
+        </ol>
+
+        <h2>Auflösung</h2>
+        <p>Der Abstand zwischen den Planeten und den Seilen beträgt bei einer       
+            Seilverlängerung um 50cm immer 7,85cm.</p>
+        <p class="tex">U_{Erde} = 2 \pi r_{Erde}</p>
+        <p class="tex">U_{Seil} = 2 \pi r_{Seil} = 2 \pi r_{Erde} + 50\textrm{cm}</p>
+        <p class="tex">r_{Seil} = r_{Erde} + 7,85\textrm{cm}</p>
+    </div>
+</body>
+</html>
