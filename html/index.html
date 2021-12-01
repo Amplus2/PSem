@@ -24,11 +24,14 @@
             place-items: center;
         }
 
+        .grid .item {
+            margin: 40px;
+        }
+
         .grid .item div {
             text-align: center;
             font-size: 24pt;
-            margin: 40px;
-            padding: 35px;
+            padding: 20px 20px 5px 20px;
             background-color: #83838350 !important;
             display: inline-block;
             border-radius: 18px;
@@ -37,25 +40,24 @@
         .item div figcaption {
             text-align: center;
             font-size: 18pt;
+            transition-duration: 150ms;
+            color: white;
         }
 
-        .logo {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            height: 120px;
-            border-radius: 25px;
+        .item div:hover figcaption {
+            color: deepskyblue;
         }
 
         .grid .item div img {
-            width: 800px;
-            height: 600px;
+            border-radius: 12px;
+            width: 600px;
+            height: 450px;
         }
     </style>
 </head>
 
 <body>
-    <img src="img/kurs_logo.ico" class="psem_logo">
+    <img src="img/kurs_logo.ico" class="logo-sole">
     <div class="grid">
         <a href="mathe-musik/" class="item">
             <div>
