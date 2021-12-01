@@ -59,24 +59,24 @@ html/img/qr.png:
 	qrencode -o html/img/qr.png "https://www.gymnasium-pegnitz.de/wp-content/uploads/psem-dist/"
 
 dist/cc/graph/graph.svg: tools/graph.ts
-	tools/graph.ts | dot -Tsvg | npx svgo -i - -o dist/cc/graph/graph.svg --multipass
+	tools/graph.ts | dot -Tsvg | npx svgo -i - -o $@ --multipass
 
 # TODO: simplify using macros
 dist/cc/index.html: package-lock.json tools/tmplt html/cc/raw/index.htm
-	tools/tmplt "" collatz-collection cc-tex < html/cc/raw/index.htm | $(HTML_MINIFY) -o dist/cc/index.html
+	tools/tmplt "" collatz-collection cc-tex < html/cc/raw/index.htm | $(HTML_MINIFY) -o $@
 
 dist/cc/stats/index.html: package-lock.json tools/tmplt html/cc/raw/stats.htm
-	tools/tmplt ../ "Statistiken zur Collatz-Folge" cc < html/cc/raw/stats.htm | $(HTML_MINIFY) -o dist/cc/stats/index.html
+	tools/tmplt ../ "Statistiken zur Collatz-Folge" cc < html/cc/raw/stats.htm | $(HTML_MINIFY) -o $@
 
 dist/cc/seq/index.html: package-lock.json tools/tmplt html/cc/raw/seq.htm
-	tools/tmplt ../ Collatz-Folge cc < html/cc/raw/seq.htm | $(HTML_MINIFY) -o dist/cc/seq/index.html
+	tools/tmplt ../ Collatz-Folge cc < html/cc/raw/seq.htm | $(HTML_MINIFY) -o $@
 
 dist/cc/graph/index.html: package-lock.json tools/tmplt html/cc/raw/graph.htm
-	tools/tmplt ../ Collatz-Graph cc < html/cc/raw/graph.htm | $(HTML_MINIFY) -o dist/cc/graph/index.html
+	tools/tmplt ../ Collatz-Graph cc < html/cc/raw/graph.htm | $(HTML_MINIFY) -o $@
 
 # TODO: change this to another template once we have it
 dist/build.html: package-lock.json tools/build_info.sh
-	tools/build_info.sh | tools/tmplt "" PSem-Build cc | $(HTML_MINIFY) -o dist/build.html
+	tools/build_info.sh | tools/tmplt "" PSem-Build cc | $(HTML_MINIFY) -o $@
 
 dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
 	mkdir -p $@

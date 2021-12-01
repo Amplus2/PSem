@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run --allow-write --allow-run --allow-read 
+#!/usr/bin/env -S deno run
 
 import * as gviz from "https://deno.land/x/graphviz@v0.2.1/mod.ts";
 
