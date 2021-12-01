@@ -7,6 +7,8 @@
     <title>Äquatoraufgabe</title>
 
     <link rel="stylesheet" href="../kaskadierend.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+  
 </head>
 <body class="center-children">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous" onload="
@@ -29,12 +31,26 @@
                 dazugehörigen Seilen?</li>
         </ol>
 
-        <h2>Auflösung</h2>
-        <p>Der Abstand zwischen den Planeten und den Seilen beträgt bei einer       
-            Seilverlängerung um 50cm immer 7,85cm.</p>
-        <p class="tex">U_{Erde} = 2 \pi r_{Erde}</p>
-        <p class="tex">U_{Seil} = 2 \pi r_{Seil} = 2 \pi r_{Erde} + 50\textrm{cm}</p>
-        <p class="tex">r_{Seil} = r_{Erde} + 7,85\textrm{cm}</p>
+        <script>
+            var display = false;
+            function toggleResult(button) {
+                const resultDiv = document.getElementById("result-div");
+                display = !display;
+                button.innerHTML = display ? "Verbergen" : "Anzeigen";
+                resultDiv.style.visibility = display ? "visible" : "hidden";
+            }
+        </script>
+
+        <h2>Auflösung <button onclick="toggleResult(this);">Anzeigen</button></h2>
+        <div id="result-div" style="visibility: hidden;">
+            <p>Der Abstand zwischen den Planeten und den Seilen beträgt bei einer       
+                Seilverlängerung um 50cm immer 7,85cm.</p>
+            <p class="tex">U_{Erde} = 2 \pi r_{Erde}</p>
+            <p class="tex">U_{Seil} = 2 \pi r_{Seil} = 2 \pi r_{Erde} + 50\textrm{cm}</p>
+            <p class="tex">r_{Seil} \approx r_{Erde} + 7,85\textrm{cm}</p>
+            <p>Es besteht ein proportionaler Zusammenhang zwischen Umfang und Radius, 
+                somit ist die Größe der Planeten irrelevant.</p>
+        </div>        
     </div>
 </body>
 </html>
