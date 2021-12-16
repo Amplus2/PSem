@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,9 @@
 
     <link rel="stylesheet" href="../kaskadierend.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
-  
+
 </head>
+
 <body class="center-children">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous" onload="
         const t = document.getElementsByClassName('tex');
@@ -20,20 +22,21 @@
     <div style="max-width: 800px;">
         <h1>Spielanleitung Äquatoraufgabe <a href="anleitung.pdf" target="_blank"><span style="font-size: 16pt;">PDF</span></a></h1>
         <h2>Einführung</h2>
-        <p>Die Kugeln stellen drei unterschiedliche Planeten unseres Sonnensystems 
-            dar. Die Längen der weißen Seile entsprechen jeweils dem Umfang der 
+        <p>Die Kugeln stellen drei unterschiedliche Planeten unseres Sonnensystems
+            dar. Die Längen der weißen Seile entsprechen jeweils dem Umfang der
             dazugehörigen Planeten plus Verlängerung von 50cm.</p>
-        
+
         <h2>Aufgabe</h2>
         <ol>
-            <li>Lege die weißen Seile um die jeweiligen Planeten, sodass der Abstand 
+            <li>Lege die weißen Seile um die jeweiligen Planeten, sodass der Abstand
                 zwischen den Planeten und Seilen an allen Stellen gleich groß ist.</li>
-            <li>Wie groß ist der Abstand zwischen den Planeten und den jeweils 
+            <li>Wie groß ist der Abstand zwischen den Planeten und den jeweils
                 dazugehörigen Seilen?</li>
         </ol>
 
         <script>
             var display = false;
+
             function toggleResult(button) {
                 const resultDiv = document.getElementById("result-div");
                 display = !display;
@@ -44,14 +47,15 @@
 
         <h2>Auflösung <button onclick="toggleResult(this);">Anzeigen</button></h2>
         <div id="result-div" style="visibility: hidden;">
-            <p>Der Abstand zwischen den Planeten und den Seilen beträgt bei einer       
+            <p>Der Abstand zwischen den Planeten und den Seilen beträgt bei einer
                 Seilverlängerung um 50cm immer 7,85cm.</p>
             <p class="tex">U_{Erde} = 2 \pi r_{Erde}</p>
             <p class="tex">U_{Seil} = 2 \pi r_{Seil} = 2 \pi r_{Erde} + 50\textrm{cm}</p>
             <p class="tex">r_{Seil} \approx r_{Erde} + 7,85\textrm{cm}</p>
-            <p>Es besteht ein proportionaler Zusammenhang zwischen Umfang und Radius, 
+            <p>Es besteht ein proportionaler Zusammenhang zwischen Umfang und Radius,
                 somit ist die Größe der Planeten irrelevant.</p>
-        </div>        
+        </div>
     </div>
 </body>
+
 </html>
