@@ -8,7 +8,7 @@ WASMFLAGS += -std=c++17
 
 INKSCAPE_EXPORT_FLAG = -$(shell inkscape --export-type svg -o - >/dev/null && echo o || echo e)
 
-$(shell mkdir -p tmp dist/cc/game dist/cc/graph dist/cc/seq dist/cc/stats dist/img)
+$(shell mkdir -p tmp dist/cc/game dist/cc/graph dist/cc/seq dist/cc/stats dist/img dist/aequator)
 
 all: dist
 
@@ -74,6 +74,12 @@ dist/cc/seq/index.html: package-lock.json tools/tmplt html/cc/raw/seq.htm
 dist/cc/graph/index.html: package-lock.json tools/tmplt html/cc/raw/graph.htm
 	tools/tmplt ../ Collatz-Graph cc < html/cc/raw/graph.htm | $(HTML_MINIFY) -o $@
 
+dist/aequator/index.html: package-lock.json tools/tmplt html/aequator/index.htm
+	tools/tmplt "" Äquatoraufgabe tex-centered < html/aequator/index.htm | $(HTML_MINIFY) -o $@
+
+dist/aequator/anleitung.pdf: html/aequator/anleitung.pdf
+	cp $< $@
+
 # TODO: change this to another template once we have it
 dist/build.html: package-lock.json tools/build_info.sh
 	tools/build_info.sh | tools/tmplt "" PSem-Build cc | $(HTML_MINIFY) -o $@
@@ -81,14 +87,6 @@ dist/build.html: package-lock.json tools/build_info.sh
 dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
 	mkdir -p $@
 	cp $? $@
-
-dist/aequator/index.html: html/aequator/index.html
-	mkdir -p dist/aequator
-	cp $< $@
-
-dist/aequator/anleitung.pdf: html/aequator/anleitung.pdf
-	mkdir -p dist/aequator
-	cp $< $@
 
 package-lock.json: package.json
 	npm install
