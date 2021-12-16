@@ -1,14 +1,14 @@
 {
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.8",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
+    "@babel/cli": "^7.16.5",
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
     "babel-preset-minify": "^0.5.1",
     "csso-cli": "^3.0.0",
-    "eslint": "^8.0.0",
+    "eslint": "^8.4.1",
     "html-minifier": "^4.0.0",
-    "svgo": "^2.7.0"
+    "svgo": "^2.8.0"
   }
 }

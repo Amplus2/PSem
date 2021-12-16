@@ -80,9 +80,8 @@ dist/aequator/index.html: package-lock.json tools/tmplt html/aequator/index.htm
 dist/aequator/anleitung.pdf: html/aequator/anleitung.pdf
 	cp $< $@
 
-# TODO: change this to another template once we have it
 dist/build.html: package-lock.json tools/build_info.sh
-	tools/build_info.sh | tools/tmplt "" PSem-Build cc | $(HTML_MINIFY) -o $@
+	tools/build_info.sh | tools/tmplt "" "PSem Build Info" centered | $(HTML_MINIFY) -o $@
 
 dist/mathe-musik/: html/mathe-musik/arrow.svg html/mathe-musik/index.html html/mathe-musik/pythagroaeisches-zahlentripel.png html/mathe-musik/frequenzverhaeltnis.png html/mathe-musik/klaviatur.png html/mathe-musik/sinuswellen.png html/mathe-musik/grosse-sexte.png html/mathe-musik/naturtonreihe.png html/mathe-musik/tonkreis.png
 	mkdir -p $@
