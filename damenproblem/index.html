@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang=de><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content=#000000><title>Damenproblem</title><link rel=stylesheet href=../kaskadierend.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><link rel="shortcut icon"type=image/x-icon href=../img/kurs_logo.ico><link rel=icon type=image/x-icon sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"href=../img/kurs_logo.ico><link rel=apple-touch-icon type=image/x-icon sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"href=../img/kurs_logo.ico></head><body class=center-children><script defer=defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous onload="const t = document.getElementsByClassName('tex');
+      for(var i = 0; i < t.length; i++) {
+        katex.render(t.item(i).innerHTML, t.item(i));
+      }"></script><img src=../img/kurs_logo.ico class=psem_logo> <img src=../img/qr.ico class=qr_code><style>.schachimg {
+
+        height: 250px;
+
+    }</style><script>var displayTipp1 = false;
+
+    var displayTipp2 = false;
+
+
+
+    var displaySolution1 = false;
+
+    var displaySolution2 = false;
+
+
+
+    function toggle(button, divId, value, callback) {
+
+        //value = !value;
+
+        button.innerHTML = !value ? "Verbergen" : "Anzeigen";
+
+        document.getElementById(divId).style.visibility = !value ? "visible" : "hidden";
+
+        callback();
+
+    }
+
+
+
+    const toggleT1 = (btn) => toggle(
+
+        btn, "t1c", displayTipp1,
+
+        () => displayTipp1 = !displayTipp1,
+
+    );
+
+
+
+    const toggleT2 = (btn) => toggle(
+
+        btn, "t2c", displayTipp2,
+
+        () => displayTipp2 = !displayTipp2,
+
+    );
+
+
+
+    const toggleS1 = (btn) => toggle(
+
+        btn, "s1c", displaySolution1,
+
+        () => displaySolution1 = !displaySolution1,
+
+    );
+
+
+
+    const toggleS2 = (btn) => toggle(
+
+        btn, "s2c", displaySolution2,
+
+        () => displaySolution2 = !displaySolution2,
+
+    );</script><div style="max-width: 800px;"><h1>Damenproblem</h1><h2>Der Schachkicker</h2><h3>Aufbau</h3><p>Alle Bauern auf dem Feld repräsentieren je eine Dame</p><p>Eine Dame kann nach ihrer Wahl schräg oder gerade so weit wie sie will schmeißen</p><h3>Aufgabe</h3><p>Versuche die 8 Damen (Bauern) so anzuordnen, dass sie sich nicht gegenseitig schlagen können. Dabei wird die Farbe der Figuren ignoriert und angenommen, dass jede Figur geschlagen werden kann.</p><h3>Lösung <button onclick=toggleS1(this)>Anzeigen</button></h3><div style="visibility: hidden;"id=s1c><p>Es gibt 92 verschiedene Möglichkeiten die Damen anzuordnen. Die einfachste Möglichkeit ist es, das Schachbrett in kleinere Felder zu unterteilen und dann die Damen nach einem bestimmten Muster zu verteilen, aber es gibt auch andere Möglichkeiten.</p><img src=6.jpg> <img src=7.jpg></div><h2>Selbstmatt</h2><h3>Aufgabe</h3><p>Versuche Schwarz dazu zu zwinge,n deinen eigenen König Schachmatt zu setzen!</p><p>Schwarz versucht das um jeden Preis zu verhindern.</p><h3>Lösung <button onclick=toggleS2(this)>Anzeigen</button></h3><div style="visibility: hidden;"id=s2c><h4>Die Dame sperrt den König ein</h4><img class=schachimg src=1.jpg><h4>Der Bauer muss nach vorne ziehen.</h4><img class=schachimg src=2.jpg><h4>Die Dame sperrt weiterhin den König ein.</h4><img class=schachimg src=3.jpg><h4>Das Pferd muss auf B3 ziehen.</h4><img class=schachimg src=4.jpg><h4>Der König wird Schachmatt gesetzt.</h4><img class=schachimg src=5.jpg></div></div></body></html>
