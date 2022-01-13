@@ -8,7 +8,7 @@ WASMFLAGS += -std=c++17
 
 INKSCAPE_EXPORT_FLAG = -$(shell inkscape --export-type svg -o - >/dev/null && echo o || echo e)
 
-$(shell mkdir -p tmp dist/cc/game dist/cc/graph dist/cc/seq dist/cc/stats dist/img dist/aequator)
+$(shell mkdir -p tmp dist/cc/game dist/cc/graph dist/cc/seq dist/cc/stats dist/img dist/aequator dist/damenproblem dist/fibonacci dist/raeuber-beute)
 
 all: dist
 
@@ -31,7 +31,7 @@ dist/cc/collatz.wasm: cpp/collatz.cc
 HTML_MINIFY = npx html-minifier --collapse-whitespace --remove-attribute-quotes --remove-comments \
                                 --remove-empty-attributes --remove-redundant-attributes --remove-tag-whitespace
 
-dist: dist/aequator/index.html dist/aequator/anleitung.pdf dist/img/index-placeholder.png dist/index.html dist/cc/collatz.js dist/cc/stats/stats.js dist/kaskadierend.css dist/img/cc_logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/cc/index.html dist/cc/graph/index.html dist/cc/seq/index.html dist/cc/stats/index.html dist/build.html dist/cc/game/index.html dist/cc/game/fail.htm dist/cc/collatz.wasm dist/mathe-musik/ dist/cc/graph/graph.svg
+dist: dist/aequator/index.html dist/aequator/anleitung.pdf dist/img/aequator.png dist/damenproblem/index.html dist/fibonacci/index.html dist/raeuber-beute/index.html dist/img/collatz.png dist/img/damenproblem.png dist/img/fibonacci.png dist/img/pythagoras.png dist/img/entstandenes_quadrat.png dist/img/raeuber_beute.png dist/index.html dist/cc/collatz.js dist/cc/stats/stats.js dist/kaskadierend.css dist/img/cc_logo.ico dist/img/kurs_logo.ico dist/img/qr.ico dist/cc/index.html dist/cc/graph/index.html dist/cc/seq/index.html dist/cc/stats/index.html dist/build.html dist/cc/game/index.html dist/cc/game/fail.htm dist/cc/collatz.wasm dist/mathe-musik/ dist/cc/graph/graph.svg
 
 dist/index.html: html/index.html
 	cp $< $@
@@ -80,6 +80,15 @@ dist/aequator/index.html: package-lock.json tools/tmplt html/aequator/index.htm
 dist/aequator/anleitung.pdf: html/aequator/anleitung.pdf
 	cp $< $@
 
+dist/damenproblem/index.html: package-lock.json tools/tmplt html/damenproblem/index.htm
+	tools/tmplt "" Damenproblem tex-centered < html/damenproblem/index.htm | $(HTML_MINIFY) -o $@
+
+dist/fibonacci/index.html: package-lock.json tools/tmplt html/fibonacci/index.htm
+	tools/tmplt "" Fibonacci-Folge tex-centered < html/fibonacci/index.htm | $(HTML_MINIFY) -o $@
+
+dist/raeuber-beute/index.html: package-lock.json tools/tmplt html/raeuber-beute/index.htm
+	tools/tmplt "" Räuber-Beute-Beziehung tex-centered < html/raeuber-beute/index.htm | $(HTML_MINIFY) -o $@
+
 dist/build.html: package-lock.json tools/build_info.sh
 	tools/build_info.sh | tools/tmplt "" "PSem Build Info" centered | $(HTML_MINIFY) -o $@
 
@@ -107,3 +116,24 @@ dist/img/index-placeholder.png: html/img/index-placeholder.png
 
 dist/img/%.ico: $(foreach r,$(RES),tmp/%-$(r).png)
 	convert tmp/$*-*.png $@
+
+dist/img/aequator.png: html/img/aequator.png
+	cp $< $@
+
+dist/img/collatz.png: html/img/collatz.png
+	cp $< $@
+
+dist/img/damenproblem.png: html/img/damenproblem.png
+	cp $< $@
+
+dist/img/fibonacci.png: html/img/fibonacci.png
+	cp $< $@
+
+dist/img/pythagoras.png: html/img/pythagoras.png
+	cp $< $@
+
+dist/img/entstandenes_quadrat.png: html/img/entstandenes_quadrat.png
+	cp $< $@
+
+dist/img/raeuber_beute.png: html/img/raeuber_beute.png
+	cp $< $@

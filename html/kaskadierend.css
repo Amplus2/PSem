@@ -120,6 +120,11 @@ button:active {
   place-items: center;
 }
 
+.horizontal-center-children {
+  display: grid;
+  justify-items: center;
+}
+
 .slider {
   appearance: none;
   width: 100%;
