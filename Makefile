@@ -80,7 +80,7 @@ dist/aequator/index.html: package-lock.json tools/tmplt html/aequator/index.htm
 dist/aequator/anleitung.pdf: html/aequator/anleitung.pdf
 	cp $< $@
 
-dist/damenproblem/index.html: package-lock.json tools/tmplt html/damenproblem/index.htm
+dist/damenproblem/index.html: package-lock.json tools/tmplt html/damenproblem/index.htm dp-imgs
 	tools/tmplt "" Damenproblem tex-centered < html/damenproblem/index.htm | $(HTML_MINIFY) -o $@
 
 dist/fibonacci/index.html: package-lock.json tools/tmplt html/fibonacci/index.htm
@@ -137,3 +137,8 @@ dist/img/entstandenes_quadrat.png: html/img/entstandenes_quadrat.png
 
 dist/img/raeuber_beute.png: html/img/raeuber_beute.png
 	cp $< $@
+
+dist/damenproblem/%.jpg: html/damenproblem/%.jpg
+	cp $< $@
+
+dp-imgs: dist/damenproblem/1.jpg dist/damenproblem/2.jpg dist/damenproblem/3.jpg dist/damenproblem/4.jpg dist/damenproblem/5.jpg dist/damenproblem/6.jpg dist/damenproblem/7.jpg
