@@ -7,108 +7,108 @@
         font-size: 22pt;
         cursor: pointer;"onclick="window.location.href = '../';">⯇ Startseite</div><script>const ACCENT_COLOR = "#00ffa1";
 
-      var last_random;
-      function random(max) {
-        var result;
-        do result = Math.floor(Math.random() * max);
-        while (result === last_random);
-        last_random = result;
-        return result;
+    var last_random;
+    function random(max) {
+      var result;
+      do result = Math.floor(Math.random() * max);
+      while (result === last_random);
+      last_random = result;
+      return result;
+    }
+
+    var score = 0;
+
+    var num1 = random(1000);
+    var num2 = random(1000);
+
+    var fail_body;
+
+    async function update_text(element, num) {
+      num = num + 1;
+      var i = 0;
+      const i1 = Math.round(120);
+      const text1counter = setInterval(() => {
+        i += 1;
+        const i2 = (i / i1) * (2 - i / i1);
+        const i3 = Math.round(num * i2);
+        if (num !== i3) element.innerHTML = i3;
+        if (i === i1) clearInterval(text1counter);
+      }, (4000 * i) / num ** 2);
+    }
+
+    function update_all_texts() {
+      update_text(document.getElementById("num1text"), num1);
+      update_text(
+        document.getElementById("num1text-steps"),
+        collatz_steps(num1)
+      );
+      update_text(document.getElementById("num2text"), num2);
+      document.getElementById("score").innerHTML = score;
+    }
+
+    function go_next(higher) {
+      // Best reference to LoL, LOL
+      const prev = Number(
+        document.getElementById("num1text-steps").innerHTML
+      );
+      const curr = collatz_steps(num2);
+      if ((higher && prev > curr) || (!higher && prev < curr)) {
+        fail(score);
+        score = 0;
+        return true;
       }
+      num1 = num2;
+      num2 = random(1000);
+      score += 1;
+      update_all_texts();
+    }
 
-      var score = 0;
+    function textbtn_blink(btn) {
+      if (btn === undefined) return;
+      btn.style.color = ACCENT_COLOR;
+      setTimeout(() => (btn.style.color = ""), 200);
+    }
 
-      var num1 = random(1000);
-      var num2 = random(1000);
-
-      var fail_body;
-
-      async function update_text(element, num) {
-        num = num + 1;
-        var i = 0;
-        const i1 = Math.round(120);
-        const text1counter = setInterval(() => {
-          i += 1;
-          const i2 = (i / i1) * (2 - i / i1);
-          const i3 = Math.round(num * i2);
-          if (num !== i3) element.innerHTML = i3;
-          if (i === i1) clearInterval(text1counter);
-        }, (4000 * i) / num ** 2);
+    function game_keyup(event) {
+      if (event.key === "ArrowUp") {
+        textbtn_blink(document.getElementById("higher"));
+        go_next(true);
+      } else if (event.key === "ArrowDown") {
+        textbtn_blink(document.getElementById("lower"));
+        go_next(false);
       }
+    }
 
-      function update_all_texts() {
-        update_text(document.getElementById("num1text"), num1);
-        update_text(
-          document.getElementById("num1text-steps"),
-          collatz_steps(num1)
-        );
-        update_text(document.getElementById("num2text"), num2);
-        document.getElementById("score").innerHTML = score;
-      }
+    function fail(score) {
+      document.getElementById("higher").style.color = "";
+      document.getElementById("lower").style.color = "";
+      const orig_body = document.body.innerHTML;
 
-      function go_next(higher) {
-        // Best reference to LoL, LOL
-        const prev = Number(
-          document.getElementById("num1text-steps").innerHTML
-        );
-        const curr = collatz_steps(num2);
-        if ((higher && prev > curr) || (!higher && prev < curr)) {
-          fail(score);
-          score = 0;
-          return true;
-        }
-        num1 = num2;
+      document.body.innerHTML = fail_body;
+      document.body.classList.add("center-children");
+
+      const play_again = () => {
+        document.body.innerHTML = orig_body;
+        document.body.classList.remove("center-children");
+
+        num1 = random(1000);
         num2 = random(1000);
-        score += 1;
+
         update_all_texts();
-      }
 
-      function textbtn_blink(btn) {
-        if (btn === undefined) return;
-        btn.style.color = ACCENT_COLOR;
-        setTimeout(() => (btn.style.color = ""), 200);
-      }
-
-      function game_keyup(event) {
-        if (event.key === "ArrowUp") {
-          textbtn_blink(document.getElementById("higher"));
-          go_next(true);
-        } else if (event.key === "ArrowDown") {
-          textbtn_blink(document.getElementById("lower"));
-          go_next(false);
-        }
-      }
-
-      function fail(score) {
-        document.getElementById("higher").style.color = "";
-        document.getElementById("lower").style.color = "";
-        const orig_body = document.body.innerHTML;
-
-        document.body.innerHTML = fail_body;
-        document.body.classList.add("center-children");
-
-        const play_again = () => {
-          document.body.innerHTML = orig_body;
-          document.body.classList.remove("center-children");
-
-          num1 = random(1000);
-          num2 = random(1000);
-
-          update_all_texts();
-
-          window.onkeydown = game_keyup;
-        };
-
-        window.onkeydown = (event) => {
-          if (event.key === " ") play_again();
-        };
-        document.getElementById("again").onclick = play_again;
-
-        document.getElementById("score").innerHTML = score;
-      }
-
-      collatz_init("../collatz.wasm").then(async () => {
-        update_all_texts();
-        fail_body = await (await fetch("fail.htm")).text();
         window.onkeydown = game_keyup;
-      });</script></body></html>
+      };
+
+      window.onkeydown = (event) => {
+        if (event.key === " ") play_again();
+      };
+      document.getElementById("again").onclick = play_again;
+
+      document.getElementById("score").innerHTML = score;
+    }
+
+    collatz_init("../collatz.wasm").then(async () => {
+      update_all_texts();
+      fail_body = await (await fetch("fail.htm")).text();
+      window.onkeydown = game_keyup;
+    });</script></body></html>
