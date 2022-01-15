@@ -209,6 +209,10 @@ button:active {
     left: 15px;
     position: absolute;
   }
+
+  #back-btn {
+    visibility: hidden;
+  }
 }
 
 @media all and (max-width: 580px) {
@@ -219,11 +223,19 @@ button:active {
   .qr_code {
     display: none;
   }
+
+  #back-btn {
+    visibility: hidden;
+  }
 }
 
 @media all and (max-width: 520px) {
   .psem_logo {
     display: none;
+  }
+
+  #back-btn {
+    visibility: hidden;
   }
 }
 
