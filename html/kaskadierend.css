@@ -226,3 +226,12 @@ button:active {
     display: none;
   }
 }
+
+#back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 18pt;
+  cursor: pointer;
+}

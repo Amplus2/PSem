@@ -1,204 +1,176 @@
 <!DOCTYPE html>
 <html lang="de" id="">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#030303" />
-    <title>Spiel zur Collatz-Folge</title>
-    <link rel="stylesheet" href="../../kaskadierend.css" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="../../img/cc_logo.ico" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
-      href="../../img/cc_logo.ico"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/x-icon"
-      sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
-      href="../../img/cc_logo.ico"
-    />
-  </head>
-  <body>
-    <script src="../collatz.js"></script>
-    <img
-      src="../../img/kurs_logo.ico"
-      style="
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#030303" />
+  <title>Spiel zur Collatz-Folge</title>
+  <link rel="stylesheet" href="../../kaskadierend.css" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/cc_logo.ico" />
+  <link rel="icon" type="image/x-icon"
+    sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
+    href="../../img/cc_logo.ico" />
+  <link rel="apple-touch-icon" type="image/x-icon"
+    sizes="32x32 64x64 96x96 128x128 160x160 192x192 224x224 256x256 288x288 320x320 352x352 384x384 416x416 448x448 480x480 512x512"
+    href="../../img/cc_logo.ico" />
+</head>
+
+<body>
+  <script src="../collatz.js"></script>
+  <img src="../../img/kurs_logo.ico" style="
         height: 85px;
         width: 85px;
         top: 15px;
         right: 15px;
         position: absolute;
-      "
-    />
+      " />
 
-    <header
-      class="center-children"
-      style="position: absolute; left: 0; right: 0"
-    >
-      <h1 style="font-size: 40pt; text-align: center">
-        score<br /><span id="score" style="color: #00ffa1">0</span>
+  <header class="center-children" style="position: absolute; left: 0; right: 0">
+    <h1 style="font-size: 40pt; text-align: center">
+      score<br /><span id="score" style="color: #00ffa1">0</span>
+    </h1>
+  </header>
+  <div style="height: 100%; width: 50%; float: left; background: #1a1a1a" class="center-children">
+    <div>
+      <h1 style="font-size: 60pt; margin: 0" id="num1text"></h1>
+      <h1 style="margin: 0; text-align: center; font-size: 35pt" id="num1text-steps"></h1>
+    </div>
+  </div>
+  <div style="height: 100%; width: 50%; float: right; background: transparent" class="center-children">
+    <div>
+      <h1 onclick="go_next(true)" style="margin: 0; text-align: center">
+        <span style="text-decoration: none" id="higher" class="text-button">▲<br />mehr</span>
       </h1>
-    </header>
-    <div
-      style="height: 100%; width: 50%; float: left; background: #1a1a1a"
-      class="center-children"
-    >
-      <div>
-        <h1 style="font-size: 60pt; margin: 0" id="num1text"></h1>
-        <h1
-          style="margin: 0; text-align: center; font-size: 35pt"
-          id="num1text-steps"
-        ></h1>
-      </div>
+      <br />
+      <h1 style="font-size: 60pt; margin: 0; text-align: center" id="num2text"></h1>
+      <br />
+      <h1 onclick="go_next(false)" style="margin: 0; text-align: center">
+        <span style="text-decoration: none" id="lower" class="text-button">weniger<br />▼</span>
+      </h1>
     </div>
-    <div
-      style="height: 100%; width: 50%; float: right; background: transparent"
-      class="center-children"
-    >
-      <div>
-        <h1 onclick="go_next(true)" style="margin: 0; text-align: center">
-          <span style="text-decoration: none" id="higher" class="text-button"
-            >▲<br />mehr</span
-          >
-        </h1>
-        <br />
-        <h1
-          style="font-size: 60pt; margin: 0; text-align: center"
-          id="num2text"
-        ></h1>
-        <br />
-        <h1 onclick="go_next(false)" style="margin: 0; text-align: center">
-          <span style="text-decoration: none" id="lower" class="text-button"
-            >weniger<br />▼</span
-          >
-        </h1>
-      </div>
-    </div>
+  </div>
 
-    <div
-      style="
+  <div style="
         position: absolute;
         padding: 10px;
         font-size: 22pt;
         cursor: pointer;
-      "
-      onclick="window.location.href = '../';"
-    >
-      ⯇ Startseite
-    </div>
+      " onclick="window.location.href = '../';">
+    ⯇ Startseite
+  </div>
 
-    <script>
-      const ACCENT_COLOR = "#00ffa1";
+  <script>
+    const ACCENT_COLOR = "#00ffa1";
 
-      var last_random;
-      function random(max) {
-        var result;
-        do result = Math.floor(Math.random() * max);
-        while (result === last_random);
-        last_random = result;
-        return result;
+    var last_random;
+    function random(max) {
+      var result;
+      do result = Math.floor(Math.random() * max);
+      while (result === last_random);
+      last_random = result;
+      return result;
+    }
+
+    var score = 0;
+
+    var num1 = random(1000);
+    var num2 = random(1000);
+
+    var fail_body;
+
+    async function update_text(element, num) {
+      num = num + 1;
+      var i = 0;
+      const i1 = Math.round(120);
+      const text1counter = setInterval(() => {
+        i += 1;
+        const i2 = (i / i1) * (2 - i / i1);
+        const i3 = Math.round(num * i2);
+        if (num !== i3) element.innerHTML = i3;
+        if (i === i1) clearInterval(text1counter);
+      }, (4000 * i) / num ** 2);
+    }
+
+    function update_all_texts() {
+      update_text(document.getElementById("num1text"), num1);
+      update_text(
+        document.getElementById("num1text-steps"),
+        collatz_steps(num1)
+      );
+      update_text(document.getElementById("num2text"), num2);
+      document.getElementById("score").innerHTML = score;
+    }
+
+    function go_next(higher) {
+      // Best reference to LoL, LOL
+      const prev = Number(
+        document.getElementById("num1text-steps").innerHTML
+      );
+      const curr = collatz_steps(num2);
+      if ((higher && prev > curr) || (!higher && prev < curr)) {
+        fail(score);
+        score = 0;
+        return true;
       }
+      num1 = num2;
+      num2 = random(1000);
+      score += 1;
+      update_all_texts();
+    }
 
-      var score = 0;
+    function textbtn_blink(btn) {
+      if (btn === undefined) return;
+      btn.style.color = ACCENT_COLOR;
+      setTimeout(() => (btn.style.color = ""), 200);
+    }
 
-      var num1 = random(1000);
-      var num2 = random(1000);
-
-      var fail_body;
-
-      async function update_text(element, num) {
-        num = num + 1;
-        var i = 0;
-        const i1 = Math.round(120);
-        const text1counter = setInterval(() => {
-          i += 1;
-          const i2 = (i / i1) * (2 - i / i1);
-          const i3 = Math.round(num * i2);
-          if (num !== i3) element.innerHTML = i3;
-          if (i === i1) clearInterval(text1counter);
-        }, (4000 * i) / num ** 2);
+    function game_keyup(event) {
+      if (event.key === "ArrowUp") {
+        textbtn_blink(document.getElementById("higher"));
+        go_next(true);
+      } else if (event.key === "ArrowDown") {
+        textbtn_blink(document.getElementById("lower"));
+        go_next(false);
       }
+    }
 
-      function update_all_texts() {
-        update_text(document.getElementById("num1text"), num1);
-        update_text(
-          document.getElementById("num1text-steps"),
-          collatz_steps(num1)
-        );
-        update_text(document.getElementById("num2text"), num2);
-        document.getElementById("score").innerHTML = score;
-      }
+    function fail(score) {
+      document.getElementById("higher").style.color = "";
+      document.getElementById("lower").style.color = "";
+      const orig_body = document.body.innerHTML;
 
-      function go_next(higher) {
-        // Best reference to LoL, LOL
-        const prev = Number(
-          document.getElementById("num1text-steps").innerHTML
-        );
-        const curr = collatz_steps(num2);
-        if ((higher && prev > curr) || (!higher && prev < curr)) {
-          fail(score);
-          score = 0;
-          return true;
-        }
-        num1 = num2;
+      document.body.innerHTML = fail_body;
+      document.body.classList.add("center-children");
+
+      const play_again = () => {
+        document.body.innerHTML = orig_body;
+        document.body.classList.remove("center-children");
+
+        num1 = random(1000);
         num2 = random(1000);
-        score += 1;
+
         update_all_texts();
-      }
 
-      function textbtn_blink(btn) {
-        if (btn === undefined) return;
-        btn.style.color = ACCENT_COLOR;
-        setTimeout(() => (btn.style.color = ""), 200);
-      }
-
-      function game_keyup(event) {
-        if (event.key === "ArrowUp") {
-          textbtn_blink(document.getElementById("higher"));
-          go_next(true);
-        } else if (event.key === "ArrowDown") {
-          textbtn_blink(document.getElementById("lower"));
-          go_next(false);
-        }
-      }
-
-      function fail(score) {
-        document.getElementById("higher").style.color = "";
-        document.getElementById("lower").style.color = "";
-        const orig_body = document.body.innerHTML;
-
-        document.body.innerHTML = fail_body;
-        document.body.classList.add("center-children");
-
-        const play_again = () => {
-          document.body.innerHTML = orig_body;
-          document.body.classList.remove("center-children");
-
-          num1 = random(1000);
-          num2 = random(1000);
-
-          update_all_texts();
-
-          window.onkeydown = game_keyup;
-        };
-
-        window.onkeydown = (event) => {
-          if (event.key === " ") play_again();
-        };
-        document.getElementById("again").onclick = play_again;
-
-        document.getElementById("score").innerHTML = score;
-      }
-
-      collatz_init("../collatz.wasm").then(async () => {
-        update_all_texts();
-        fail_body = await (await fetch("fail.htm")).text();
         window.onkeydown = game_keyup;
-      });
-    </script>
-  </body>
+      };
+
+      window.onkeydown = (event) => {
+        if (event.key === " ") play_again();
+      };
+      document.getElementById("again").onclick = play_again;
+
+      document.getElementById("score").innerHTML = score;
+    }
+
+    collatz_init("../collatz.wasm").then(async () => {
+      update_all_texts();
+      fail_body = await (await fetch("fail.htm")).text();
+      window.onkeydown = game_keyup;
+    });
+  </script>
+</body>
+
 </html>
