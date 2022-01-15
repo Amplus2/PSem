@@ -58,7 +58,7 @@
 
 <body>
     <img src="img/kurs_logo.ico" class="logo-sole">
-    <div class="grid">
+    <div class="grid" id="main-grid">
         <a href="aequator/" class="item">
             <div>
                 <img src="img/aequator.png">
@@ -89,7 +89,8 @@
                 <figcaption>Mathematik in der Musik</figcaption>
             </div>
         </a>
-        <a href="external_view/?title=Problem%20des%20enstandenen%20Quadrats&url=https%3A%2F%2Fgfs.khmeyberg.de%2FBilderbuchMathematik%2Fparadoxa.html" class="item">
+        <a href="external_view/?title=Problem%20des%20enstandenen%20Quadrats&url=https%3A%2F%2Fgfs.khmeyberg.de%2FBilderbuchMathematik%2Fparadoxa.html"
+            class="item">
             <div>
                 <img src="img/entstandenes_quadrat.png">
                 <figcaption>Das Problem des enstandenen Quadrats</figcaption>
@@ -104,5 +105,25 @@
         <div style="width: 50px; height: 1px;"></div>
     </div>
 </body>
+
+<!-- <script>
+    const horizontalScroll = (event, target) => {
+        event = window.event || event;
+        const delta = Math.max(-1, Math.min(1, (event.wheelDeltaY || -event.detail)));
+        target.scrollLeft -= delta * 40;
+        event.preventDefault();
+    };
+
+    window.onload = () => {
+        const listener = (event) => horizontalScroll(event, document.documentElement);
+        if (window.addEventListener) {
+            ['mousewheel', 'DOMMouseScroll'].forEach(event => {
+                window.addEventListener(event, listener, { passive: false });
+            });
+        } else {
+            window.attachEvent('onmousewheel', listener);
+        }
+    };
+</script> -->
 
 </html>
