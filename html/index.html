@@ -20,7 +20,7 @@
         .grid {
             padding: 120px;
             display: grid;
-            grid-auto-flow: column;
+            grid-auto-flow: row;
             place-items: center;
         }
 
@@ -106,24 +106,13 @@
     </div>
 </body>
 
-<!-- <script>
-    const horizontalScroll = (event, target) => {
-        event = window.event || event;
-        const delta = Math.max(-1, Math.min(1, (event.wheelDeltaY || -event.detail)));
-        target.scrollLeft -= delta * 40;
-        event.preventDefault();
-    };
-
+<script>
     window.onload = () => {
-        const listener = (event) => horizontalScroll(event, document.documentElement);
-        if (window.addEventListener) {
-            ['mousewheel', 'DOMMouseScroll'].forEach(event => {
-                window.addEventListener(event, listener, { passive: false });
-            });
-        } else {
-            window.attachEvent('onmousewheel', listener);
+        if (navigator.userAgent.toLowerCase().includes('spielmalmathe')) {
+            const grid = document.getElementById('main-grid');
+            grid.style.gridAutoFlow = 'column';
         }
     };
-</script> -->
+</script>
 
 </html>

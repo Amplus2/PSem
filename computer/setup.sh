@@ -23,7 +23,8 @@ hei="$(echo "$xrandr" | cut -dx -f2)"
 
 exec chromium https://amplus2.github.io/collatz-collection/ --kiosk \
     --start-fullscreen --fast --noerrdialogs --fast-start --disable-infobars \
-    --disable-features=TranslateUI --disable-translate --window-size=$wid,$hei
+    --disable-features=TranslateUI --disable-translate --window-size=$wid,$hei \
+    --user-agent="Mozilla/5.0 (X11; Linux ARM) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 SpielMalMathe"
 EOF
 
 cat > .profile <<EOF
